@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Editorial Portfolio | Projects Gallery</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@800;900&amp;family=Noto+Serif:italic,wght@0,400;1,400&amp;family=Manrope:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1b1c1c",
+                    "surface-container": "#eeeee9",
+                    "on-surface": "#1a1c19",
+                    "secondary-container": "#e2dfde",
+                    "surface-dim": "#dadad5",
+                    "inverse-primary": "#accebc",
+                    "on-background": "#1a1c19",
+                    "tertiary-fixed-dim": "#ecbaba",
+                    "on-primary-container": "#729383",
+                    "tertiary": "#210809",
+                    "on-tertiary-fixed-variant": "#613d3e",
+                    "surface-container-highest": "#e3e3de",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#636262",
+                    "primary-fixed": "#c8ebd8",
+                    "on-primary-fixed-variant": "#2e4d3f",
+                    "surface-tint": "#466556",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-primary-fixed": "#012115",
+                    "tertiary-fixed": "#ffdad9",
+                    "error-container": "#ffdad6",
+                    "background": "#fafaf5",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fafaf5",
+                    "surface-variant": "#e3e3de",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#0a2a1e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#424844",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#accebc",
+                    "primary": "#00130b",
+                    "outline": "#727974",
+                    "outline-variant": "#c1c8c2",
+                    "surface": "#fafaf5",
+                    "surface-container-low": "#f4f4ef",
+                    "surface-container-high": "#e8e8e3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue"],
+                    "body": ["Noto Serif"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for horizontal area */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Right Side Sticky Navigation (Shared Component: SideNavBar) -->
+<!-- Logic: Active state is "Curated" as this is the Projects Gallery -->
+<nav class="fixed right-8 top-1/2 -translate-y-1/2 w-20 rounded-full py-8 bg-emerald-950/60 backdrop-blur-3xl dark:bg-emerald-950/60 shadow-2xl shadow-emerald-950/20 flex flex-col items-center gap-8 z-50">
+<div class="text-lg font-black text-white font-['Epilogue'] tracking-tighter uppercase mb-4">E</div>
+<a class="bg-white text-emerald-950 rounded-full scale-110 p-3 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs font-label rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Curated</span>
+</a>
+<a class="text-white/60 p-3 hover:text-white hover:scale-105 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs font-label rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Process</span>
+</a>
+<a class="text-white/60 p-3 hover:text-white hover:scale-105 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs font-label rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Archive</span>
+</a>
+<a class="text-white/60 p-3 hover:text-white hover:scale-105 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs font-label rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Contact</span>
+</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="relative min-h-screen">
+<!-- Header Section -->
+<header class="px-8 pt-24 pb-12 md:px-24">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="space-y-4">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">Editorial Selection — 2024</span>
+<h1 class="font-headline text-6xl md:text-8xl font-extrabold tracking-tighter text-primary leading-none">
+                        Curated<br/>Works.
+                    </h1>
+</div>
+<div class="max-w-md">
+<p class="font-body italic text-xl text-on-surface-variant leading-relaxed">
+                        A rhythmic exploration of digital architecture, where precision meets the human touch. Each frame tells a story of intent.
+                    </p>
+</div>
+</div>
+</header>
+<!-- Horizontal Project Gallery Area -->
+<section class="mt-12 overflow-x-auto hide-scrollbar snap-x snap-mandatory flex gap-12 px-8 md:px-24 pb-24">
+<!-- Project Card 01 -->
+<div class="snap-center shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]">
+<div class="group relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-container transition-all duration-700 hover:shadow-2xl hover:shadow-primary/5">
+<img alt="Minimalist Architecture" class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110" data-alt="Modernist concrete building facade with clean lines and geometric shadows under a clear blue sky, minimalist architectural photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3KIMkADlxI7UNR27nO293D_Kl9LgeLaMKrJ92FQE_KdaBtCwsGzZ-fXWq43me-jZ_TPI6upiXSGooTn_zD7z3cAjewgJOl_u-tczwgl78yjrjEkfnoCXbsQm84LqrJLMwrbRqS0o28awqaMrClUeolybuH4VK6a_Yr-gOGOqcp_nAVM9z86WG49ppDe2V4luerhxsYEKS3JOzDz2tILoND7JEIiwOFkJAqyL1RfgEfEUWad2xBKwatlVnmXQI9wLsE0RydqBbO6-P"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+<div class="mt-8 flex flex-col md:flex-row justify-between gap-6">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-primary">The Obsidian Monolith</h2>
+<p class="font-body italic text-lg text-on-surface-variant mt-2">Brand Identity &amp; Architectural Strategy</p>
+</div>
+<a class="self-start px-8 py-4 bg-primary-container text-on-primary rounded-full font-label text-sm uppercase tracking-widest hover:scale-105 transition-transform duration-300" href="#">
+                        View Study
+                    </a>
+</div>
+</div>
+<!-- Project Card 02 -->
+<div class="snap-center shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]">
+<div class="group relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-container transition-all duration-700 hover:shadow-2xl hover:shadow-primary/5">
+<img alt="Digital Interface" class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110" data-alt="Macro shot of a high-end mechanical watch movement with intricate gears and brass components, cinematic lighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7foIPkMYUDGpINKQeAU4nnwPHqQ7z4_x8lvvo0kzEkrxtobLQpOHfy4iAzMPC8ChcszsKDdTSVoAYQ_HSryowK06ftYcqjPfnuYM6SjFlSggTVD1c1GmRJJj9e_5xne5VF0_rW9ifFyBa2XYnMQjDMpmxfBYkUJ913zcPe7FOyfooeYWuYWdInvFSRFkptVxwW6uEE0zgtTH9xRFTNORELylP_c_SwRoxIX3WcrHZt6THqBaw97vikvPfnoDEVoRaTtB5R_QRtPiA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+<div class="mt-8 flex flex-col md:flex-row justify-between gap-6">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-primary">Chronos Interface</h2>
+<p class="font-body italic text-lg text-on-surface-variant mt-2">Experimental UI Design &amp; Interaction</p>
+</div>
+<a class="self-start px-8 py-4 bg-primary-container text-on-primary rounded-full font-label text-sm uppercase tracking-widest hover:scale-105 transition-transform duration-300" href="#">
+                        View Study
+                    </a>
+</div>
+</div>
+<!-- Project Card 03 -->
+<div class="snap-center shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]">
+<div class="group relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-container transition-all duration-700 hover:shadow-2xl hover:shadow-primary/5">
+<img alt="Forest Landscape" class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110" data-alt="Dense evergreen forest shrouded in morning mist with sun rays piercing through the tall pine trees, moody atmospheric landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvZNgOZKabXg68WwSB8_DvQ4faRz-ntRN6zgzLHjbzolvYhkVg75QAV9jUh36NDHBlDokQsVs6X4X8QtRfUGC4087e3E3k9seg2H1ojy7Pt76vBYHgs1q93bOAYYOY0JesHLADokXjg3cIacEHQdafOyrbfU01vB625TBvbGdpNo_4VavWTvxON_lRuBkIg0V3gYU7o05FgwBBf41IJTQEf4uORBsqaXRtw-5DdXIaTXu7P-LFSGAJAy3mq2qQJPe-7ul61WM8QiV1"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+<div class="mt-8 flex flex-col md:flex-row justify-between gap-6">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-primary">Ether Forest</h2>
+<p class="font-body italic text-lg text-on-surface-variant mt-2">Immersive Environmental Experience</p>
+</div>
+<a class="self-start px-8 py-4 bg-primary-container text-on-primary rounded-full font-label text-sm uppercase tracking-widest hover:scale-105 transition-transform duration-300" href="#">
+                        View Study
+                    </a>
+</div>
+</div>
+<!-- Spacer for scroll ending -->
+<div class="shrink-0 w-8 md:w-24"></div>
+</section>
+<!-- Secondary Section: Artistic Philosophy (Bento Grid Style) -->
+<section class="px-8 md:px-24 py-24 bg-surface-container rounded-t-xl">
+<div class="max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Large Text Block -->
+<div class="md:col-span-8 bg-surface-container-lowest p-12 rounded-lg flex flex-col justify-between">
+<span class="font-label text-xs uppercase tracking-widest text-primary/60">Philosophy 01</span>
+<h3 class="font-headline text-5xl font-extrabold text-primary mt-12 mb-8 leading-tight">Crafting stillness in a world of constant motion.</h3>
+<p class="font-body text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                            My approach favors the essential over the decorative. By stripping away the noise, I find the core resonance of a project, creating digital spaces that feel timeless rather than trendy.
+                        </p>
+</div>
+<!-- Aesthetic Card 01 -->
+<div class="md:col-span-4 aspect-square rounded-lg overflow-hidden group">
+<img alt="Sunset Silhouette" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Person standing alone on a pier at sunset, minimalist composition with golden light reflecting on calm water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMo5lRCB4PABGvAOPTrpVtnbCDesAxcGF0vU_MoneYH6udZoD1wIFXCl4rBJBMlwch_b8HWp6e2qFH9JcL11YTbsK1MjBjHrWUfkjULRzl_gqDo_cvhoC7LX-146Qc1BvTPdTp_rTs60t146R5ANXfBOhlGOWEuVLLbq1UIshnINwS910SmtnuPh26mpRc-QT1T6f2OCtpneUHa1b9XUiaHQ2vSRe093bLsV7gD_29wkTbi7cW4qasb7IonVY--OnITDB6LliuSTUF"/>
+</div>
+<!-- Aesthetic Card 02 -->
+<div class="md:col-span-4 aspect-square rounded-lg overflow-hidden group order-last md:order-none">
+<img alt="Ocean Wave" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Close up of a single ocean wave crashing with white foam against a deep turquoise sea, high speed photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCofZRZ-V7sM-c6B8ka8A_VU81B_C4l0oV70bcQk3k_8-OyrR-JDY-5sE8aWo7u0uWtjIAMdeRbx1xRpqxMAtmnZNZUzqJdWLz9lHf9uvmvJ2sik0xg9Is9mVvJQGMJiLdr8mtbXCgQ1755MyRa1I4d5nRFy7TjY9iJSLS-ZRmPb2h3yMFe7rbwgNz9B1ybYgnrgwQh-CsCDHoMVQ_IuK9jsoOyop0l71zEKis0SI5vfVh3FPRn-Tn2PpFNG_wUwlGpSSAxKi7aynyy"/>
+</div>
+<!-- Small Insight Block -->
+<div class="md:col-span-8 bg-primary-container p-12 rounded-lg text-on-primary flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-6">
+<div class="h-px w-12 bg-on-primary-container"></div>
+<span class="font-label text-xs uppercase tracking-widest text-on-primary-container">Aesthetic Direction</span>
+</div>
+<p class="font-headline text-3xl font-extrabold tracking-tight">
+                            "Detail is not a feature. It is the foundation of trust between the creator and the witness."
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Shared Component) -->
+<footer class="w-full rounded-t-xl bg-stone-50 dark:bg-emerald-950 mt-24">
+<div class="max-w-7xl mx-auto px-12 py-24 flex flex-col items-center text-center">
+<div class="font-['Epilogue'] font-extrabold text-4xl tracking-tighter text-emerald-900 dark:text-stone-50 mb-8">
+                    EDITORIAL
+                </div>
+<p class="font-['Noto_Serif'] leading-relaxed italic text-2xl text-emerald-900/80 dark:text-stone-50/80 max-w-2xl mb-12">
+                    Let's curate something extraordinary together.
+                </p>
+<div class="flex flex-wrap justify-center gap-12 mb-16">
+<a class="text-emerald-900/60 dark:text-stone-300/60 font-label uppercase tracking-widest text-sm hover:underline underline-offset-8 transition-all hover:text-emerald-900 dark:hover:text-white" href="#">LinkedIn</a>
+<a class="text-emerald-900/60 dark:text-stone-300/60 font-label uppercase tracking-widest text-sm hover:underline underline-offset-8 transition-all hover:text-emerald-900 dark:hover:text-white" href="#">Dribbble</a>
+<a class="text-emerald-900/60 dark:text-stone-300/60 font-label uppercase tracking-widest text-sm hover:underline underline-offset-8 transition-all hover:text-emerald-900 dark:hover:text-white" href="#">Instagram</a>
+<a class="text-emerald-900/60 dark:text-stone-300/60 font-label uppercase tracking-widest text-sm hover:underline underline-offset-8 transition-all hover:text-emerald-900 dark:hover:text-white" href="#">Email</a>
+</div>
+<div class="pt-12 border-t border-emerald-900/10 dark:border-white/10 w-full text-emerald-900/40 dark:text-stone-500 text-sm font-label tracking-widest">
+                    © 2024 THE DIGITAL CURATOR. CRAFTED WITH INTENT.
+                </div>
+</div>
+</footer>
+</main>
+</body></html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@800;900&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1b1c1c",
+                    "surface-container": "#eeeee9",
+                    "on-surface": "#1a1c19",
+                    "secondary-container": "#e2dfde",
+                    "surface-dim": "#dadad5",
+                    "inverse-primary": "#accebc",
+                    "on-background": "#1a1c19",
+                    "tertiary-fixed-dim": "#ecbaba",
+                    "on-primary-container": "#729383",
+                    "tertiary": "#210809",
+                    "on-tertiary-fixed-variant": "#613d3e",
+                    "surface-container-highest": "#e3e3de",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#636262",
+                    "primary-fixed": "#c8ebd8",
+                    "on-primary-fixed-variant": "#2e4d3f",
+                    "surface-tint": "#466556",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-primary-fixed": "#012115",
+                    "tertiary-fixed": "#ffdad9",
+                    "error-container": "#ffdad6",
+                    "background": "#fafaf5",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fafaf5",
+                    "surface-variant": "#e3e3de",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#0a2a1e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#424844",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#accebc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue"],
+                    "body": ["Noto Serif"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-title {
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+        }
+        body {
+            background-color: #fafaf5;
+            color: #1a1c19;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- SideNavBar Anchor -->
+<nav class="fixed right-8 top-1/2 -translate-y-1/2 w-20 rounded-full py-8 bg-emerald-950/60 backdrop-blur-3xl dark:bg-emerald-950/60 shadow-2xl shadow-emerald-950/20 flex flex-col items-center gap-8 z-50">
+<div class="text-lg font-black text-white font-headline tracking-tighter uppercase">ED</div>
+<div class="flex flex-col items-center gap-6">
+<!-- Curated (Active) -->
+<a class="bg-white text-emerald-950 rounded-full scale-110 p-3 hover:text-white hover:scale-105 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity font-label whitespace-nowrap">Curated</span>
+</a>
+<a class="text-white/60 p-3 hover:text-white hover:scale-105 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity font-label whitespace-nowrap">Process</span>
+</a>
+<a class="text-white/60 p-3 hover:text-white hover:scale-105 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity font-label whitespace-nowrap">Archive</span>
+</a>
+<a class="text-white/60 p-3 hover:text-white hover:scale-105 transition-all duration-500 group relative" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="absolute right-full mr-4 px-3 py-1 bg-primary-container text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity font-label whitespace-nowrap">Contact</span>
+</a>
+</div>
+</nav>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="relative pt-24 pb-12 px-8 md:px-24">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+<div class="md:col-span-8">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-6 block">The Digital Curator / 2024</span>
+<h1 class="font-headline font-extrabold text-[clamp(4rem,12vw,10rem)] editorial-title text-primary-container">
+                        CREATIVE<br/>STRATEGY &amp;<br/>CURATION.
+                    </h1>
+</div>
+<div class="md:col-span-4 pb-4">
+<p class="font-body text-xl italic leading-relaxed text-on-surface-variant max-w-sm">
+                        Building immersive digital experiences that balance industrial strength with academic grace.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Feature Image Section -->
+<section class="px-8 md:px-24 py-12">
+<div class="max-w-7xl mx-auto">
+<div class="relative h-[716px] w-full overflow-hidden rounded-xl bg-surface-container shadow-2xl">
+<img alt="Minimalist design workspace" class="w-full h-full object-cover grayscale brightness-90 contrast-110" data-alt="Sophisticated minimalist workspace with a large window, deep shadows, dark wood desk, and high-end design monographs on a shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFZ4tg26EHHfdcRGv7ut0cydXdNkOjIM6Hk2umv7ShRhzFHsjH95VjsPxz3j7vTeyr06Amziml0Ev0fuGjZscV866fZcLvnb3CX7NkeKjc63rhEZKKrrG1yN65UUO-utQ-FTInckyOjLiIn3uYuJpipO8zMsqNchByzLpIKwjdEoWm3O0QR3YzlMUc_uT3AjSrV0EOr1iqTrFP5Uw1n-9GIwnDpEk4ppOo9Wk4Ss90e8jrgJcVVjXaojYFcSvtHIXPsc95b8sgwHnX"/>
+<div class="absolute bottom-12 left-12 p-8 backdrop-blur-md bg-white/10 rounded-lg border border-white/10 max-w-md">
+<p class="font-label text-[10px] text-white uppercase tracking-widest mb-2">Philosophy</p>
+<h2 class="text-white font-headline text-3xl font-extrabold tracking-tighter mb-4 uppercase">The Art of Stillness</h2>
+<p class="text-white/80 font-body text-sm leading-relaxed">
+                            Every pixel is a decision. Every white space is an invitation to breathe. We reject the noise of modern web design for the clarity of intentional silence.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section: Staggered Content -->
+<section class="px-8 md:px-24 py-32 bg-surface-container-low rounded-t-xl">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
+<div class="space-y-12">
+<h3 class="font-headline font-extrabold text-5xl text-primary-container leading-none uppercase tracking-tighter">
+                        CHOREOGRAPHED<br/>NARRATIVE.
+                    </h3>
+<div class="space-y-6">
+<p class="font-body text-2xl leading-relaxed text-on-surface">
+                            We move away from rigid, boxed-in layouts in favor of expansive compositions and intentional asymmetry. 
+                        </p>
+<p class="font-body text-lg leading-relaxed text-on-surface-variant">
+                            Our design system moves beyond the standard web toolkit, utilizing ultra-heavy typography against delicate serif body copy to create a rhythmic cadence. This is not just a layout; it is a choreography of content designed to be experienced, not just viewed.
+                        </p>
+</div>
+<div class="pt-8 flex gap-4">
+<button class="bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-transform duration-300">
+                            The Methodology
+                        </button>
+<button class="bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-outline-variant/20 hover:bg-surface-container transition-colors duration-300">
+                            Case Studies
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6 items-start">
+<div class="space-y-6 pt-12">
+<div class="aspect-3/4 bg-surface-container rounded-lg overflow-hidden shadow-lg">
+<img alt="Editorial detail" class="w-full h-full object-cover grayscale" data-alt="Close-up of a high-end fashion magazine with heavy black typography and fine-line illustrations on thick cream paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ9y8FkWAVLXeVD1Qu7LBt7aUYEZjH7oyy3tOnvRdaUM-DKWFHXQb7F3i6NXLMLiSo7LZVC8VAGAnhIsUAXsZ4JUfvzCKIdyd1Cm0EpSrGKoiv11GIZA7uajTI4lh2yVf1hB9xNFSz6tYgfKiZETCAWbxl8Uoo4igzulD782eQfD5DL1LR4eR-UOcvpIU8wVRIzOZXWNMnFTBSssLL416w7rsy_elubTAkXKa6numhGXVx28jJHGQmW8umojwu9AmCBqtH1hMABOEC"/>
+</div>
+<div class="p-6 bg-surface-container-lowest rounded-lg">
+<span class="font-label text-[10px] uppercase text-primary-container font-bold block mb-2">Excellence</span>
+<p class="font-body text-sm italic">"Precision in every stroke, intention in every void."</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="p-6 bg-primary-container text-white rounded-lg">
+<span class="text-4xl font-headline font-extrabold block mb-4">12+</span>
+<p class="font-label text-xs uppercase tracking-widest text-white/60">Years of Editorial Design</p>
+</div>
+<div class="aspect-square bg-surface-container rounded-lg overflow-hidden shadow-lg">
+<img alt="Modern architecture" class="w-full h-full object-cover" data-alt="Concrete brutalist architectural staircase with sharp shadows and dramatic sunlight hitting a smooth surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwrIbAHDJAOzqjYeHpaocqWFKQVyxPjg1sensL2UMNjyCkZ2eVKiiX1h9NMONp5kYCYMci99BOPuACXKg6y_JxqMOcxSKobYmokkKKdEEL3cllxpWN4wd67NcueJpALJto3KqStCKDih_d47WyjDHseAk_kyJ1lM10Sm3W0FSk-9Ld6bMmPFnaFsce1-5w_gk-TYKHAsuXHLChgdvLwsXAWn0ipFsuBMTiGXbNR0ZQHLb0jWxOITGOKtb2onURPJjV7IfFaXLidspL"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Layout Services -->
+<section class="px-8 md:px-24 py-32 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<h2 class="font-headline font-extrabold text-7xl text-primary-container tracking-tighter leading-none">THE CORE<br/>DISCIPLINES.</h2>
+<p class="font-body text-xl max-w-sm italic text-on-surface-variant">Defining value through visual hierarchy and tactile digital surfaces.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Bento Item 1 -->
+<div class="md:col-span-2 bg-surface-container-lowest p-12 rounded-xl flex flex-col justify-between group transition-all duration-500 hover:bg-primary-container hover:text-white">
+<span class="material-symbols-outlined text-4xl mb-12">architecture</span>
+<div>
+<h4 class="font-headline text-3xl font-extrabold uppercase mb-4">Visual Architecture</h4>
+<p class="font-body text-lg opacity-80 group-hover:opacity-100 transition-opacity">Structuring information with the permanence of a monograph. Every element has its place in the rhythmic flow.</p>
+</div>
+</div>
+<!-- Bento Item 2 -->
+<div class="bg-surface-container p-12 rounded-xl flex flex-col justify-between hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined text-4xl mb-12">auto_awesome</span>
+<div>
+<h4 class="font-headline text-2xl font-extrabold uppercase mb-4">Tactile Motion</h4>
+<p class="font-body text-md opacity-70">Subtle interactions that feel physical, weighting digital interactions with gravity and grace.</p>
+</div>
+</div>
+<!-- Bento Item 3 -->
+<div class="bg-surface-container p-12 rounded-xl flex flex-col justify-between hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined text-4xl mb-12">palette</span>
+<div>
+<h4 class="font-headline text-2xl font-extrabold uppercase mb-4">Tonal Curation</h4>
+<p class="font-body text-md opacity-70">Harmonizing deep forest greens and parchment tones to evoke an atmosphere of intellectual luxury.</p>
+</div>
+</div>
+<!-- Bento Item 4 -->
+<div class="md:col-span-2 bg-primary-container text-on-primary p-12 rounded-xl flex items-center justify-between overflow-hidden relative group">
+<div class="relative z-10 max-w-md">
+<h4 class="font-headline text-3xl font-extrabold uppercase mb-4">Brand Identity</h4>
+<p class="font-body text-lg opacity-80">Forging identities that resonate through time. We build brands that don't just exist, they endure.</p>
+</div>
+<div class="absolute right-0 top-0 w-1/3 h-full opacity-20 group-hover:opacity-40 transition-opacity">
+<img alt="Brand detail" class="w-full h-full object-cover" data-alt="Close up of a premium silver embossed logo on high-quality forest green cardboard texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbyG1ed55_2LMZkYwVMl1U4px9PU5PXqc0BcrKqmDHjnXh4GGq_AxCSCpuSFfZlKPaQb0d6eo_Xo8IgPwBxOcO9iAqND4ekQfKaGG0zRUkP_S3-3HPDA-MiFqtQtb-PKXs1Ph6mBYulSXur0ZwU39hHkY5kTU9qwvzDLHEMVX9ActNpqmt8IazhOtIsn4l42lgmqAB5NtKIQYmiuFNfG_AIZHVJUXXgnze3gbzFMWOoKyeUxNr8JeM3RNNe8QrxsdpWt2ugAJqkBlK"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quote Section -->
+<section class="py-32 bg-primary-container text-white overflow-hidden relative">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent"></div>
+</div>
+<div class="max-w-5xl mx-auto px-8 text-center relative z-10">
+<span class="material-symbols-outlined text-6xl mb-12 opacity-40" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<blockquote class="font-body text-4xl md:text-6xl italic leading-tight mb-12">
+                    "The Digital Curator doesn't just build websites; they craft digital monographs that command attention through silence and precision."
+                </blockquote>
+<cite class="font-label text-sm uppercase tracking-[0.4em] text-white/50 not-italic">— Editorial Review 2024</cite>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] mt-24 bg-stone-50 dark:bg-emerald-950 text-emerald-900 dark:text-stone-50">
+<div class="max-w-7xl mx-auto px-12 py-24 flex flex-col items-center text-center">
+<div class="font-['Epilogue'] font-extrabold text-4xl tracking-tighter mb-8">EDITORIAL</div>
+<nav class="flex flex-wrap justify-center gap-12 mb-16">
+<a class="font-['Noto_Serif'] leading-relaxed italic text-lg text-emerald-900/60 dark:text-stone-300/60 hover:underline underline-offset-8 transition-all" href="#">LinkedIn</a>
+<a class="font-['Noto_Serif'] leading-relaxed italic text-lg text-emerald-900/60 dark:text-stone-300/60 hover:underline underline-offset-8 transition-all" href="#">Dribbble</a>
+<a class="font-['Noto_Serif'] leading-relaxed italic text-lg text-emerald-900/60 dark:text-stone-300/60 hover:underline underline-offset-8 transition-all" href="#">Instagram</a>
+<a class="font-['Noto_Serif'] leading-relaxed italic text-lg text-emerald-900/60 dark:text-stone-300/60 hover:underline underline-offset-8 transition-all" href="#">Email</a>
+</nav>
+<p class="font-label text-xs uppercase tracking-widest opacity-50">
+                    © 2024 The Digital Curator. Crafted with Intent.
+                </p>
+</div>
+</footer>
+</main>
+</body></html>
