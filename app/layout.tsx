@@ -3,6 +3,7 @@ import { Epilogue, Noto_Serif, Manrope } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
+import { CustomCursor } from "@/components/animations/custom-cursor";
 
 const epilogue = Epilogue({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col font-body">
+        <CustomCursor />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

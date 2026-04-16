@@ -24,7 +24,7 @@ const sectionHeadingVariants = cva("font-headline font-extrabold", {
   },
 })
 
-type HeadingTag = "h1" | "h2" | "h3" | "h4"
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "p"
 
 function SectionHeading({
   className,

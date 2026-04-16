@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LayoutGrid, Sparkles, Archive, Mail } from "lucide-react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -13,6 +14,7 @@ const navItems = [
 
 export function SideNav() {
   const [activeSection, setActiveSection] = useState("curated");
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,13 +36,42 @@ export function SideNav() {
     return () => observer.disconnect();
   }, []);
 
+  useGSAP(
+    () => {
+      if (!navRef.current) return;
+
+      // Delayed entrance — slide in from right
+      gsap.from(navRef.current, {
+        x: 60,
+        opacity: 0,
+        duration: 0.8,
+        delay: 2,
+        ease: "power3.out",
+      });
+
+      // Stagger nav items
+      gsap.from(".sidenav-item", {
+        scale: 0,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.4,
+        delay: 2.2,
+        ease: "back.out(2)",
+      });
+    },
+    { scope: navRef }
+  );
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <nav className="fixed right-4 top-1/2 -translate-y-1/2 w-12 rounded-full py-4 bg-emerald-950/60 backdrop-blur-3xl shadow-2xl shadow-emerald-950/20 flex flex-col items-center gap-4 z-50 hidden lg:flex">
+    <nav
+      ref={navRef}
+      className="fixed right-4 top-1/2 -translate-y-1/2 w-12 rounded-full py-4 bg-emerald-950/60 backdrop-blur-3xl shadow-2xl shadow-emerald-950/20 flex-col items-center gap-4 z-50 hidden lg:flex"
+    >
       <div className="text-xs font-black text-white font-headline tracking-tighter uppercase">
         RA
       </div>
@@ -53,14 +84,15 @@ export function SideNav() {
               key={item.id}
               onClick={() => scrollTo(item.id)}
               className={cn(
-                "p-2 transition-all duration-500 group relative",
+                "sidenav-item p-2 transition-all duration-500 group relative",
                 isActive
                   ? "bg-white text-emerald-950 rounded-full scale-110"
                   : "text-white/60 hover:text-white hover:scale-105"
               )}
             >
               <Icon className="size-4" />
-              <span className="absolute right-full mr-3 px-2 py-1 bg-primary-container text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity font-label whitespace-nowrap">
+              {/* Spring tooltip */}
+              <span className="absolute right-full mr-3 px-3 py-1.5 bg-primary-container text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 ease-out font-label whitespace-nowrap pointer-events-none">
                 {item.label}
               </span>
             </button>

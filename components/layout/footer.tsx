@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/button";
 
 const footerLinks = [
@@ -8,27 +12,91 @@ const footerLinks = [
 ];
 
 export function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (!footerRef.current) return;
+
+      // Brand name character stagger
+      gsap.from(".footer-char", {
+        yPercent: 100,
+        opacity: 0,
+        stagger: 0.04,
+        duration: 0.6,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 85%",
+        },
+      });
+
+      // Links fade-in stagger
+      gsap.from(".footer-link", {
+        y: 20,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".footer-nav",
+          start: "top 90%",
+        },
+      });
+
+      // Divider draw
+      gsap.from(".footer-divider", {
+        scaleX: 0,
+        transformOrigin: "center",
+        duration: 0.8,
+        ease: "power3.inOut",
+        scrollTrigger: {
+          trigger: ".footer-divider",
+          start: "top 95%",
+        },
+      });
+
+      // Copyright fade
+      gsap.from(".footer-copyright", {
+        opacity: 0,
+        duration: 0.6,
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: ".footer-copyright",
+          start: "top 95%",
+        },
+      });
+    },
+    { scope: footerRef }
+  );
+
   return (
-    <footer className="w-full rounded-t-[3rem] mt-24 bg-surface-container-lowest text-on-surface">
+    <footer
+      ref={footerRef}
+      className="w-full rounded-t-[3rem] mt-24 bg-surface-container-lowest text-on-surface"
+    >
       <div className="max-w-7xl mx-auto px-12 py-24 flex flex-col items-center text-center">
-        <div className="font-headline font-extrabold text-4xl tracking-tighter mb-8">
-          RABEET
+        <div className="font-headline font-extrabold text-4xl tracking-tighter mb-8 overflow-hidden">
+          {"RABEET".split("").map((char, i) => (
+            <span key={i} className="footer-char inline-block">
+              {char}
+            </span>
+          ))}
         </div>
-        <nav className="flex flex-wrap justify-center gap-12 mb-16">
+        <nav className="footer-nav flex flex-wrap justify-center gap-12 mb-16">
           {footerLinks.map((link) => (
             <Button
               key={link.label}
-              variant="link-serif"
-              size="sm"
               nativeButton={false}
-              className="px-0 py-0"
+              className="footer-link font-body italic text-lg text-on-surface/60 hover:underline underline-offset-8 transition-all"
               render={<a href={link.href} />}
             >
               {link.label}
             </Button>
           ))}
         </nav>
-        <p className="font-label text-xs uppercase tracking-widest opacity-50">
+        <div className="footer-divider h-px w-24 bg-on-surface/10 mb-8" />
+        <p className="footer-copyright font-label text-xs uppercase tracking-widest opacity-50">
           &copy; 2024 Rabeet Ahmer. Crafted with Intent.
         </p>
       </div>
