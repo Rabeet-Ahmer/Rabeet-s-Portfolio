@@ -73,12 +73,12 @@ export function CustomCursor() {
       {/* Outer ring — follows with lag */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-surface pointer-events-none mix-blend-difference z-[9999] opacity-0 hidden lg:block"
+        className="fixed top-0 left-0 w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-surface pointer-events-none mix-blend-difference z-9999 opacity-0 hidden lg:block"
       />
       {/* Inner dot — instant */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-surface pointer-events-none mix-blend-difference z-[9999] hidden lg:block"
+        className="fixed top-0 left-0 w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-surface pointer-events-none mix-blend-difference z-9999 hidden lg:block"
       />
     </>
   );

@@ -105,7 +105,7 @@ export function ProjectsPhilosophy() {
           </div>
 
           {/* Dynamic image */}
-          <div className="phil-item md:col-span-4 aspect-square rounded-lg overflow-hidden order-last md:order-none">
+          <div className="phil-item md:col-span-4 aspect-square rounded-lg overflow-hidden order-last md:order-0">
             <Image
               src="/prism.jpeg"
               alt="Light refracting through glass prism"
