@@ -1,111 +1,78 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-function SplitChars({
-  text,
-  className,
-}: {
-  text: string;
-  className?: string;
-}) {
-  return (
-    <span className={className}>
-      {text.split("").map((char, i) => (
-        <span key={i} className="inline-block hero-char">
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </span>
-  );
-}
 
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const entranceTl = useRef<gsap.core.Timeline | null>(null);
+
+  useEffect(() => {
+    const handlePreloader = () => {
+      if (entranceTl.current) {
+        entranceTl.current.play();
+      }
+    };
+
+    window.addEventListener("preloaderDone", handlePreloader);
+    return () => window.removeEventListener("preloaderDone", handlePreloader);
+  }, []);
 
   useGSAP(
     () => {
       if (!sectionRef.current) return;
 
       const tl = gsap.timeline({
+        paused: true,
         defaults: { ease: "power4.out" },
       });
+      entranceTl.current = tl;
 
-      // Eyebrow badge
-      tl.from(".hero-eyebrow", {
-        y: 30,
+    // Eyebrow badge
+    tl.from(".hero-eyebrow", {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+    });
+
+    // Heading words reveal from below
+    tl.from(
+      ".hero-word",
+      {
+        yPercent: 150,
+        stagger: 0.08,
+        duration: 0.9,
+        ease: "power4.out",
+      },
+      "-=0.4"
+    );
+
+    // Subtitle
+    tl.from(
+      ".hero-subtitle",
+      {
+        y: 40,
         opacity: 0,
+        filter: "blur(10px)",
         duration: 0.8,
-      });
+      },
+      "-=0.5"
+    );
 
-      // Heading characters stagger
-      tl.from(
-        ".hero-heading .hero-char",
-        {
-          y: 120,
-          opacity: 0,
-          rotateX: -90,
-          stagger: 0.02,
-          duration: 1,
-          ease: "back.out(1.4)",
-        },
-        "-=0.4"
-      );
-
-      // Italic part
-      tl.from(
-        ".hero-heading-italic .hero-char",
-        {
-          y: 80,
-          opacity: 0,
-          rotateX: -60,
-          stagger: 0.03,
-          duration: 0.9,
-          ease: "back.out(1.7)",
-        },
-        "-=0.7"
-      );
-
-      // Subtitle
-      tl.from(
-        ".hero-subtitle",
-        {
-          y: 40,
-          opacity: 0,
-          filter: "blur(10px)",
-          duration: 0.8,
-        },
-        "-=0.5"
-      );
-
-      // CTA buttons
-      tl.from(
-        ".hero-cta",
-        {
-          y: 20,
-          opacity: 0,
-          stagger: 0.15,
-          duration: 0.6,
-        },
-        "-=0.3"
-      );
-
-      // Person image — scale + fade up
-      tl.from(
-        ".hero-person",
-        {
-          y: 100,
-          opacity: 0,
-          scale: 0.9,
-          duration: 1.4,
-          ease: "power2.out",
-        },
-        "-=0.8"
-      );
+    // Person image — scale + fade up
+    tl.from(
+      ".hero-person",
+      {
+        y: 100,
+        opacity: 0,
+        scale: 0.9,
+        duration: 1.4,
+        ease: "power2.out",
+      },
+      "-=0.8"
+    );
 
       // Floating stat badges — pop in
       tl.from(
@@ -183,19 +150,30 @@ export function Hero() {
         {/* Main heading */}
         <div className="hero-heading-wrapper">
           <h1 className="font-headline font-extrabold text-[clamp(2.5rem,8vw,5rem)] editorial-title text-surface max-w-4xl leading-[0.95]">
-            <span className="hero-heading inline-block overflow-hidden perspective-[600px]">
-              <SplitChars text="Design, Develop" />
-            </span>
+            {["Design,", "Develop"].map((word, i) => (
+              <span key={i} className="inline-block overflow-hidden p-[0.2em] -m-[0.2em]">
+                <span className="hero-word inline-block mr-[0.2em]">
+                  {word}
+                </span>
+              </span>
+            ))}
             <br />
-            <span className="hero-heading-italic font-body italic font-normal text-primary-fixed-dim inline-block overflow-hidden perspective-[600px]">
-              <SplitChars text="& Deliver." />
-            </span>
+            {["&", "Deliver."].map((word, i) => (
+              <span
+                key={i}
+                className="inline-block overflow-hidden p-[0.2em] -m-[0.2em] font-body italic font-normal text-primary-fixed-dim"
+              >
+                <span className="hero-word inline-block mr-[0.2em]">
+                  {word}
+                </span>
+              </span>
+            ))}
           </h1>
         </div>
 
         {/* Subtitle */}
         <p className="hero-subtitle font-body text-base md:text-lg text-on-primary-container/80 max-w-xl mt-6 leading-relaxed">
-          Full-Stack Developer &amp; Agentic AI Developer — building scalable
+          Full-Stack Developer &amp; Agentic AI Developer &mdash; building scalable
           web solutions with Next.js &amp; pioneering intelligent AI systems.
         </p>
 

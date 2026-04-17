@@ -98,6 +98,31 @@ export function ProjectsGallery() {
           });
         }
       });
+
+      // Mousemove parallax on gallery images
+      panels.forEach((panel) => {
+        const img = panel.querySelector(".gallery-img") as HTMLElement;
+        if (!img) return;
+
+        const handleMove = (e: MouseEvent) => {
+          const rect = panel.getBoundingClientRect();
+          const xPercent = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+          const yPercent = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+          gsap.to(img, {
+            x: xPercent * 20,
+            y: yPercent * 15,
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        };
+
+        const handleLeave = () => {
+          gsap.to(img, { x: 0, y: 0, duration: 0.6, ease: "power2.out" });
+        };
+
+        panel.addEventListener("mousemove", handleMove);
+        panel.addEventListener("mouseleave", handleLeave);
+      });
     },
     { scope: sectionRef }
   );
@@ -108,6 +133,7 @@ export function ProjectsGallery() {
         {projects.map((project, index) => (
           <div
             key={project.title}
+            data-cursor="view"
             className="gallery-panel relative w-screen h-screen shrink-0 overflow-hidden group"
           >
             {/* Full-screen background image */}

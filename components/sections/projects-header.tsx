@@ -31,7 +31,7 @@ export function ProjectsHeader() {
       tl.from(
         ".proj-header-line",
         {
-          yPercent: 100,
+          yPercent: 150,
           duration: 0.9,
           ease: "power4.out",
           stagger: 0.1,
@@ -81,10 +81,10 @@ export function ProjectsHeader() {
             Selected Work — 2024
           </Badge>
           <SectionHeading size="display" color="primary">
-            <div className="overflow-hidden">
+            <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
               <span className="proj-header-line inline-block">Recent</span>
             </div>
-            <div className="overflow-hidden">
+            <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
               <span className="proj-header-line inline-block">Projects.</span>
             </div>
           </SectionHeading>

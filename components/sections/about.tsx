@@ -17,7 +17,7 @@ export function About() {
 
       // Heading line-by-line reveal
       gsap.from(".about-heading-line", {
-        yPercent: 100,
+        yPercent: 120,
         duration: 0.9,
         ease: "power4.out",
         stagger: 0.12,
@@ -120,6 +120,7 @@ export function About() {
 
   return (
     <section
+      id="about"
       className="px-8 md:px-24 py-32 bg-surface-container-low rounded-t-xl"
       ref={sectionRef}
     >
@@ -133,12 +134,12 @@ export function About() {
               as="h3"
               className="uppercase"
             >
-              <div className="overflow-hidden">
+              <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
                 <span className="about-heading-line inline-block">
                   BUILDING THE
                 </span>
               </div>
-              <div className="overflow-hidden">
+              <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
                 <span className="about-heading-line inline-block">
                   FUTURE.
                 </span>

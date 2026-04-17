@@ -6,8 +6,8 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { id: "curated", icon: LayoutGrid, label: "Curated" },
-  { id: "process", icon: Sparkles, label: "Process" },
+  { id: "about", icon: LayoutGrid, label: "About" },
+  { id: "process", icon: Sparkles, label: "Services" },
   { id: "archive", icon: Archive, label: "Archive" },
   { id: "contact", icon: Mail, label: "Contact" },
 ];
@@ -40,24 +40,27 @@ export function SideNav() {
     () => {
       if (!navRef.current) return;
 
-      // Delayed entrance — slide in from right
-      gsap.from(navRef.current, {
-        x: 60,
-        opacity: 0,
-        duration: 0.8,
-        delay: 2,
-        ease: "power3.out",
-      });
+      // Container entrance
+      gsap.fromTo(navRef.current,
+        { x: 60, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, delay: 1, ease: "power3.out" }
+      );
 
       // Stagger nav items
-      gsap.from(".sidenav-item", {
-        scale: 0,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.4,
-        delay: 2.2,
-        ease: "back.out(2)",
-      });
+      const items = gsap.utils.toArray(".sidenav-item", navRef.current);
+      if (items.length > 0) {
+        gsap.fromTo(items,
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            stagger: 0.08,
+            duration: 0.4,
+            delay: 1.3,
+            ease: "back.out(2)"
+          }
+        );
+      }
     },
     { scope: navRef }
   );
@@ -72,30 +75,33 @@ export function SideNav() {
       ref={navRef}
       className="fixed right-4 top-1/2 -translate-y-1/2 w-12 rounded-full py-4 bg-emerald-950/60 backdrop-blur-3xl shadow-2xl shadow-emerald-950/20 flex-col items-center gap-4 z-50 hidden lg:flex"
     >
-      <div className="text-xs font-black text-white font-headline tracking-tighter uppercase">
+      <button
+        onClick={() => scrollTo("curated")}
+        className="text-xs font-black text-white hover:text-white/80 transition-colors font-headline tracking-tighter uppercase cursor-pointer"
+      >
         RA
-      </div>
+      </button>
       <div className="flex flex-col items-center gap-3">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
           return (
-            <button
-              key={item.id}
-              onClick={() => scrollTo(item.id)}
-              className={cn(
-                "sidenav-item p-2 transition-all duration-500 group relative",
-                isActive
-                  ? "bg-white text-emerald-950 rounded-full scale-110"
-                  : "text-white/60 hover:text-white hover:scale-105"
-              )}
-            >
-              <Icon className="size-4" />
-              {/* Spring tooltip */}
-              <span className="absolute right-full mr-3 px-3 py-1.5 bg-primary-container text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 ease-out font-label whitespace-nowrap pointer-events-none">
-                {item.label}
-              </span>
-            </button>
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={cn(
+                  "sidenav-item p-2 flex items-center justify-center transition-all duration-500 group relative",
+                  isActive
+                    ? "bg-white text-emerald-950 rounded-full scale-110"
+                    : "text-white/60 hover:text-white hover:scale-105"
+                )}
+              >
+                <Icon className="size-4" />
+                {/* Spring tooltip */}
+                <span className="absolute top-1/2 -translate-y-1/2 right-full mr-3 px-3 py-1.5 bg-primary-container text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 ease-out font-label whitespace-nowrap pointer-events-none">
+                  {item.label}
+                </span>
+              </button>
           );
         })}
       </div>

@@ -14,16 +14,21 @@ export function ProjectsPhilosophy() {
     () => {
       if (!sectionRef.current) return;
 
+      // Prevent FOUC
+      gsap.set(".phil-item", { y: 60, opacity: 0 });
+
       // Staggered grid entrance
       ScrollTrigger.batch(".phil-item", {
         start: "top 88%",
+        once: true,
         onEnter: (elements) => {
-          gsap.from(elements, {
-            y: 60,
-            opacity: 0,
+          gsap.to(elements, {
+            y: 0,
+            opacity: 1,
             duration: 0.8,
             stagger: 0.15,
             ease: "power3.out",
+            overwrite: true,
           });
         },
       });
@@ -55,6 +60,7 @@ export function ProjectsPhilosophy() {
         scrollTrigger: {
           trigger: ".phil-badge-line",
           start: "top 85%",
+          once: true,
         },
       });
     },

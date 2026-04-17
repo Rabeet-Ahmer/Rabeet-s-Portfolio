@@ -32,7 +32,7 @@ export function ContactHeader() {
       tl.from(
         ".contact-heading-line",
         {
-          yPercent: 100,
+          yPercent: 120,
           duration: 0.9,
           ease: "power4.out",
           stagger: 0.1,
@@ -96,12 +96,12 @@ export function ContactHeader() {
             Let&rsquo;s Connect
           </Badge>
           <SectionHeading size="display" color="primary" className="mb-8">
-            <div className="overflow-hidden">
+            <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
               <span className="contact-heading-line inline-block">
                 Have a project in
               </span>
             </div>
-            <div className="overflow-hidden">
+            <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
               <span className="contact-heading-line inline-block italic font-body font-normal text-primary/80">
                 mind?
               </span>
