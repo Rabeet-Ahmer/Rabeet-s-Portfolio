@@ -30,49 +30,49 @@ export function Hero() {
       });
       entranceTl.current = tl;
 
-    // Eyebrow badge
-    tl.from(".hero-eyebrow", {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-    });
-
-    // Heading words reveal from below
-    tl.from(
-      ".hero-word",
-      {
-        yPercent: 150,
-        stagger: 0.08,
-        duration: 0.9,
-        ease: "power4.out",
-      },
-      "-=0.4"
-    );
-
-    // Subtitle
-    tl.from(
-      ".hero-subtitle",
-      {
-        y: 40,
+      // Eyebrow badge
+      tl.from(".hero-eyebrow", {
+        y: 30,
         opacity: 0,
-        filter: "blur(10px)",
         duration: 0.8,
-      },
-      "-=0.5"
-    );
+      });
 
-    // Person image — scale + fade up
-    tl.from(
-      ".hero-person",
-      {
-        y: 100,
-        opacity: 0,
-        scale: 0.9,
-        duration: 1.4,
-        ease: "power2.out",
-      },
-      "-=0.8"
-    );
+      // Heading words reveal from below
+      tl.from(
+        ".hero-word",
+        {
+          yPercent: 150,
+          stagger: 0.08,
+          duration: 0.9,
+          ease: "power4.out",
+        },
+        "-=0.4",
+      );
+
+      // Subtitle
+      tl.from(
+        ".hero-subtitle",
+        {
+          y: 40,
+          opacity: 0,
+          filter: "blur(10px)",
+          duration: 0.8,
+        },
+        "-=0.5",
+      );
+
+      // Person image — scale + fade up
+      tl.from(
+        ".hero-person",
+        {
+          y: 100,
+          opacity: 0,
+          scale: 0.9,
+          duration: 1.4,
+          ease: "power2.out",
+        },
+        "-=0.8",
+      );
 
       // Floating stat badges — pop in
       tl.from(
@@ -84,7 +84,7 @@ export function Hero() {
           duration: 0.6,
           ease: "back.out(2)",
         },
-        "-=0.5"
+        "-=0.5",
       );
 
       // --- Scroll-driven parallax ---
@@ -122,7 +122,7 @@ export function Hero() {
         });
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
@@ -151,7 +151,10 @@ export function Hero() {
         <div className="hero-heading-wrapper">
           <h1 className="font-headline font-extrabold text-[clamp(2.5rem,8vw,5rem)] editorial-title text-surface max-w-4xl leading-[0.95]">
             {["Design,", "Develop"].map((word, i) => (
-              <span key={i} className="inline-block overflow-hidden p-[0.2em] -m-[0.2em]">
+              <span
+                key={i}
+                className="inline-block overflow-hidden p-[0.2em] -m-[0.2em]"
+              >
                 <span className="hero-word inline-block mr-[0.2em]">
                   {word}
                 </span>
@@ -173,8 +176,9 @@ export function Hero() {
 
         {/* Subtitle */}
         <p className="hero-subtitle font-body text-base md:text-lg text-on-primary-container/80 max-w-xl mt-6 leading-relaxed">
-          Full-Stack Developer &amp; Agentic AI Developer &mdash; building scalable
-          web solutions with Next.js &amp; pioneering intelligent AI systems.
+          Full-Stack Developer &amp; Agentic AI Developer &mdash; building
+          scalable web solutions with Next.js &amp; pioneering intelligent AI
+          systems.
         </p>
 
         {/* Person image area with floating badges */}

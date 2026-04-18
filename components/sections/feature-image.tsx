@@ -72,7 +72,7 @@ export function FeatureImage() {
       <div className="max-w-7xl mx-auto">
         <div className="feature-container relative h-[500px] md:h-[716px] w-full overflow-hidden rounded-xl bg-surface-container">
           <Image
-            src="/desk.jpg"
+            src="/featured.jpeg"
             alt="Featured workspace"
             fill
             className="feature-image object-cover"
@@ -89,7 +89,7 @@ export function FeatureImage() {
           >
             <Badge
               variant="light"
-              className="text-[10px] text-white tracking-widest mb-2"
+              className="text-[10px] text-tertiary tracking-widest mb-2"
             >
               Featured Work
             </Badge>
@@ -97,11 +97,11 @@ export function FeatureImage() {
               as="h2"
               size="card"
               color="inherit"
-              className="text-white tracking-tighter mb-4 uppercase"
+              className="text-tertiary tracking-tighter mb-4 uppercase"
             >
               Rhetorich — SaaS Platform
             </SectionHeading>
-            <p className="text-white/80 font-body text-sm leading-relaxed">
+            <p className="text-tertiary/80 font-body text-sm leading-relaxed">
               An AI-powered coaching platform helping lawyers become more
               impactful communicators. Full-stack development from architecture
               to deployment.

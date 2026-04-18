@@ -9,25 +9,25 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 const projects = [
   {
-    title: "Rhetorich",
+    title: "Mentora",
     category: "SaaS Platform — AI Coaching",
     description:
       "An AI-powered coaching platform helping lawyers become more impactful communicators.",
-    image: "/prism.jpeg",
+    image: "/project1.jpeg",
   },
   {
-    title: "Portfolio V2",
-    category: "Personal Branding — Web Design",
+    title: "AI Todo App",
+    category: "Web App — AI Assistant",
     description:
-      "A curated digital portfolio balancing industrial strength with academic grace.",
-    image: "/desk.jpg",
+      "An AI-powered todo app that helps you stay organized and focused.",
+    image: "/project2.jpeg",
   },
   {
-    title: "Project Three",
-    category: "Coming Soon",
+    title: "Deep Research Agent",
+    category: "Web App — AI Assistant",
     description:
-      "An upcoming project pushing the boundaries of intelligent automation.",
-    image: "/cube.jpg",
+      "An AI-powered research agent for students and professionals deep research work.",
+    image: "/project3.jpeg",
   },
 ];
 

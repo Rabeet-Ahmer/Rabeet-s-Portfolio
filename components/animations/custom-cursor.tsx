@@ -58,7 +58,11 @@ export function CustomCursor() {
     const showLabel = (text: string) => {
       label.textContent = text;
       gsap.to(cursor, {
+        width: 40,
+        height: 40,
         scale: 3.5,
+        borderRadius: "50%",
+        backgroundColor: "transparent",
         duration: 0.3,
         ease: "power2.out",
       });
@@ -72,6 +76,8 @@ export function CustomCursor() {
     const hideLabel = () => {
       gsap.to(cursor, {
         scale: 1,
+        borderRadius: "50%",
+        backgroundColor: "transparent",
         duration: 0.3,
         ease: "power2.out",
       });

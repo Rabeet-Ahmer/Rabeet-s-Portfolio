@@ -159,10 +159,16 @@ export function About() {
             </p>
           </div>
           <div className="about-cta-wrapper pt-8 flex gap-4">
-            <Button className="about-cta bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-transform duration-300">
+            <Button 
+              data-cursor="shrink"
+              className="about-cta bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-transform duration-300"
+            >
               My Process
             </Button>
-            <Button className="about-cta bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-on-surface-variant/20 hover:bg-surface-container transition-colors duration-300">
+            <Button 
+              data-cursor="shrink"
+              className="about-cta bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-on-surface-variant/20 hover:bg-surface-container transition-colors duration-300"
+            >
               Download CV
             </Button>
           </div>
@@ -206,7 +212,7 @@ export function About() {
               className="about-stats-card text-white"
             >
               <span className="about-stat-number text-4xl font-headline font-extrabold block mb-4">
-                2
+                +2
               </span>
               <p className="font-label text-xs uppercase tracking-widest text-white/60">
                 Years Building &amp; Shipping
