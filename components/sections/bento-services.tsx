@@ -5,6 +5,7 @@ import { Code, Bot, Server, Workflow } from "lucide-react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { TiltCard } from "@/components/animations/tilt-card";
 
 const services = [
   {
@@ -56,26 +57,33 @@ export function BentoServices() {
     () => {
       if (!sectionRef.current) return;
 
+      // Prevent FOUC — hidden setup
+      gsap.set(".bento-title", { y: 60, opacity: 0 });
+      gsap.set(".bento-subtitle", { y: 30, opacity: 0 });
+      gsap.set(".bento-card", { opacity: 0, y: 80, rotateY: 8, transformOrigin: "left center" });
+      gsap.set(".bento-icon", { rotate: -15, scale: 0.8, opacity: 0 });
+
       // Heading & subtitle entrance
       const headerTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".bento-header",
           start: "top 85%",
+          once: true,
         },
       });
 
       headerTl
-        .from(".bento-title", {
-          y: 60,
-          opacity: 0,
+        .to(".bento-title", {
+          y: 0,
+          opacity: 1,
           duration: 0.8,
           ease: "power4.out",
         })
-        .from(
+        .to(
           ".bento-subtitle",
           {
-            y: 30,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 0.6,
             ease: "power3.out",
           },
@@ -85,30 +93,34 @@ export function BentoServices() {
       // Card staggered entrance with 3D perspective
       ScrollTrigger.batch(".bento-card", {
         start: "top 88%",
+        once: true,
         onEnter: (elements) => {
-          gsap.from(elements, {
-            opacity: 0,
-            y: 80,
-            rotateY: 8,
-            transformOrigin: "left center",
+          gsap.to(elements, {
+            opacity: 1,
+            y: 0,
+            rotateY: 0,
+            transformOrigin: "center center",
             duration: 0.9,
             stagger: 0.12,
             ease: "power3.out",
+            overwrite: true,
+            clearProps: "transformOrigin",
           });
         },
       });
 
       // Icon micro-animation on scroll
       gsap.utils.toArray<HTMLElement>(".bento-icon").forEach((icon) => {
-        gsap.from(icon, {
-          rotate: -15,
-          scale: 0.8,
-          opacity: 0,
+        gsap.to(icon, {
+          rotate: 0,
+          scale: 1,
+          opacity: 1,
           duration: 0.6,
           ease: "back.out(2)",
           scrollTrigger: {
             trigger: icon,
             start: "top 90%",
+            once: true,
           },
         });
       });
@@ -135,28 +147,33 @@ export function BentoServices() {
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <Card
+              <TiltCard
                 key={service.title}
-                variant={service.variant}
-                interactive={service.interactive}
-                padding="lg"
-                rounding="xl"
-                className={`bento-card ${service.span} flex-col justify-between min-h-[280px]`}
+                className={`bento-card ${service.span}`}
+                maxTilt={3}
               >
-                <Icon className="bento-icon size-10 mb-12" strokeWidth={1.5} />
-                <div>
-                  <h4
-                    className={`font-headline font-extrabold uppercase mb-4 ${service.textSize === "lg" ? "text-3xl" : "text-2xl"}`}
-                  >
-                    {service.title}
-                  </h4>
-                  <p
-                    className={`font-body opacity-80 group-hover:opacity-100 transition-opacity ${service.textSize === "lg" ? "text-lg" : "text-base"}`}
-                  >
-                    {service.description}
-                  </p>
-                </div>
-              </Card>
+                <Card
+                  variant={service.variant}
+                  interactive={service.interactive}
+                  padding="lg"
+                  rounding="xl"
+                  className="flex-col justify-between min-h-[280px] h-full"
+                >
+                  <Icon className="bento-icon size-10 mb-12" strokeWidth={1.5} />
+                  <div>
+                    <h4
+                      className={`font-headline font-extrabold uppercase mb-4 ${service.textSize === "lg" ? "text-3xl" : "text-2xl"}`}
+                    >
+                      {service.title}
+                    </h4>
+                    <p
+                      className={`font-body opacity-80 group-hover:opacity-100 transition-opacity ${service.textSize === "lg" ? "text-lg" : "text-base"}`}
+                    >
+                      {service.description}
+                    </p>
+                  </div>
+                </Card>
+              </TiltCard>
             );
           })}
         </div>

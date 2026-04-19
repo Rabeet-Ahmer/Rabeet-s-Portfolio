@@ -4,6 +4,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { CustomCursor } from "@/components/animations/custom-cursor";
+import { Preloader } from "@/components/animations/preloader";
+import { ScrollProgress } from "@/components/animations/scroll-progress";
+
 
 const epilogue = Epilogue({
   subsets: ["latin"],
@@ -46,7 +49,9 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col font-body">
+        <Preloader />
         <CustomCursor />
+        <ScrollProgress />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

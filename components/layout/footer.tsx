@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { Button } from "@/components/ui/button";
+import { InfiniteMarquee } from "@/components/animations/infinite-marquee";
 
 const footerLinks = [
   { label: "LinkedIn", href: "#" },
@@ -20,7 +20,7 @@ export function Footer() {
 
       // Brand name character stagger
       gsap.from(".footer-char", {
-        yPercent: 100,
+        yPercent: 120,
         opacity: 0,
         stagger: 0.04,
         duration: 0.6,
@@ -32,9 +32,10 @@ export function Footer() {
       });
 
       // Links fade-in stagger
-      gsap.from(".footer-link", {
-        y: 20,
-        opacity: 0,
+      gsap.set(".footer-link", { opacity: 0, y: 20 });
+      gsap.to(".footer-link", {
+        y: 0,
+        opacity: 1,
         stagger: 0.08,
         duration: 0.5,
         ease: "power3.out",
@@ -73,10 +74,19 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="w-full rounded-t-[3rem] mt-24 bg-surface-container-lowest text-on-surface"
+      className="w-full rounded-t-xl mt-24 bg-surface-container-lowest text-on-surface overflow-hidden"
     >
+      {/* Infinite marquee */}
+      <div className="footer-marquee-wrapper py-12 border-b border-on-surface/5 overflow-hidden">
+        <InfiniteMarquee speed={25} gap={64}>
+          <span className="footer-marquee-item font-headline font-extrabold text-[8vw] md:text-[6vw] tracking-tighter uppercase text-on-surface/5 px-8 shrink-0 select-none">
+            RABEET AHMER — DESIGN, DEVELOP & DELIVER •
+          </span>
+        </InfiniteMarquee>
+      </div>
+
       <div className="max-w-7xl mx-auto px-12 py-24 flex flex-col items-center text-center">
-        <div className="font-headline font-extrabold text-4xl tracking-tighter mb-8 overflow-hidden">
+        <div className="font-headline font-extrabold text-4xl tracking-tighter mb-8 overflow-hidden p-[0.2em] -m-[0.2em]">
           {"RABEET".split("").map((char, i) => (
             <span key={i} className="footer-char inline-block">
               {char}
@@ -85,19 +95,18 @@ export function Footer() {
         </div>
         <nav className="footer-nav flex flex-wrap justify-center gap-12 mb-16">
           {footerLinks.map((link) => (
-            <Button
+            <a
               key={link.label}
-              nativeButton={false}
-              className="footer-link font-body italic text-lg text-on-surface/60 hover:underline underline-offset-8 transition-all"
-              render={<a href={link.href} />}
+              href={link.href}
+              className="footer-link inline-flex items-center font-body italic text-lg text-on-surface/60 hover:underline underline-offset-8 transition-all px-4 py-2"
             >
               {link.label}
-            </Button>
+            </a>
           ))}
         </nav>
         <div className="footer-divider h-px w-24 bg-on-surface/10 mb-8" />
         <p className="footer-copyright font-label text-xs uppercase tracking-widest opacity-50">
-          &copy; 2024 Rabeet Ahmer. Crafted with Intent.
+          &copy; 2026 Rabeet Ahmer. Crafted with Intent.
         </p>
       </div>
     </footer>

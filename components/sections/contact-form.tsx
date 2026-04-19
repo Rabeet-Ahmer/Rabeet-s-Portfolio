@@ -16,15 +16,24 @@ export function ContactForm() {
     () => {
       if (!sectionRef.current) return;
 
-      // Section clip-path reveal — circle wipe from center
-      gsap.from(sectionRef.current, {
-        clipPath: "inset(10% 10% 10% 10% round 3rem)",
+      // FOUC Prevention
+      gsap.set(sectionRef.current, { clipPath: "inset(10% 10% 10% 10% round 3rem)" });
+      gsap.set(".contact-form-title", { y: 40, opacity: 0 });
+      gsap.set(".contact-form-desc", { y: 20, opacity: 0 });
+      gsap.set(".contact-input", { y: 30, opacity: 0 });
+      gsap.set(".contact-submit", { y: 20, opacity: 0 });
+      gsap.set(".contact-detail", { y: 40, opacity: 0 });
+
+      // Section clip-path reveal
+      gsap.to(sectionRef.current, {
+        clipPath: "inset(0%)",
         duration: 1.2,
         ease: "power3.inOut",
+        clearProps: "clipPath", // clean up to let tailwind rounding take over
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 85%",
-          toggleActions: "play none none none",
+          once: true,
         },
       });
 
@@ -33,21 +42,22 @@ export function ContactForm() {
         scrollTrigger: {
           trigger: ".contact-form-content",
           start: "top 80%",
+          once: true,
         },
       });
 
       formTl
-        .from(".contact-form-title", {
-          y: 40,
-          opacity: 0,
+        .to(".contact-form-title", {
+          y: 0,
+          opacity: 1,
           duration: 0.7,
           ease: "power3.out",
         })
-        .from(
+        .to(
           ".contact-form-desc",
           {
-            y: 20,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 0.5,
             ease: "power3.out",
           },
@@ -57,52 +67,58 @@ export function ContactForm() {
       // Input fields stagger
       ScrollTrigger.batch(".contact-input", {
         start: "top 90%",
+        once: true,
         onEnter: (elements) => {
-          gsap.from(elements, {
-            y: 30,
-            opacity: 0,
+          gsap.to(elements, {
+            y: 0,
+            opacity: 1,
             stagger: 0.1,
             duration: 0.6,
             ease: "power3.out",
+            overwrite: true,
           });
         },
       });
 
       // Submit button entrance
-      gsap.from(".contact-submit", {
-        y: 20,
-        opacity: 0,
+      gsap.to(".contact-submit", {
+        y: 0,
+        opacity: 1,
         duration: 0.6,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".contact-submit",
           start: "top 95%",
+          once: true,
         },
       });
 
       // Details section stagger
-      gsap.from(".contact-detail", {
-        y: 40,
-        opacity: 0,
+      gsap.to(".contact-detail", {
+        y: 0,
+        opacity: 1,
         stagger: 0.15,
         duration: 0.7,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".contact-details",
           start: "top 80%",
+          once: true,
         },
       });
 
       // Social links stagger
-      gsap.from(".contact-social", {
-        x: -30,
-        opacity: 0,
+      gsap.set(".contact-social", { x: -30, opacity: 0 });
+      gsap.to(".contact-social", {
+        x: 0,
+        opacity: 1,
         stagger: 0.1,
         duration: 0.6,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".contact-socials",
           start: "top 85%",
+          once: true,
         },
       });
     },
@@ -185,7 +201,7 @@ export function ContactForm() {
                   Location
                 </Badge>
                 <h4 className="font-body text-3xl italic text-surface group-hover:translate-x-2 transition-transform duration-500">
-                  Based in Pakistan
+                  Based in Karachi, Pakistan
                   <span className="text-surface/40 not-italic font-label text-base uppercase mt-2 block">
                     Working Worldwide
                   </span>
@@ -196,7 +212,7 @@ export function ContactForm() {
                   Direct Email
                 </Badge>
                 <h4 className="font-body text-3xl italic text-surface group-hover:translate-x-2 transition-transform duration-500 border-b border-surface/10 pb-4">
-                  rabeet@email.com
+                  rabeetahmer9749@gmail.com
                 </h4>
               </div>
             </div>
@@ -208,17 +224,16 @@ export function ContactForm() {
               </Badge>
               <div className="grid grid-cols-1 gap-4">
                 {socials.map((name) => (
-                  <Button
+                  <a
                     key={name}
-                    nativeButton={false}
+                    href="#"
                     className="contact-social flex items-center justify-between group py-4 px-6 rounded-full border border-white/5 text-on-primary hover:bg-white hover:text-primary-container transition-all duration-500"
-                    render={<a href="#" />}
                   >
                     <span className="font-headline text-lg font-bold uppercase tracking-tighter">
                       {name}
                     </span>
                     <ArrowUpRight className="size-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
-                  </Button>
+                  </a>
                 ))}
               </div>
             </div>

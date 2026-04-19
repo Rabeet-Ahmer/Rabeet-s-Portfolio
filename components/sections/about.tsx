@@ -17,7 +17,7 @@ export function About() {
 
       // Heading line-by-line reveal
       gsap.from(".about-heading-line", {
-        yPercent: 100,
+        yPercent: 120,
         duration: 0.9,
         ease: "power4.out",
         stagger: 0.12,
@@ -120,6 +120,7 @@ export function About() {
 
   return (
     <section
+      id="about"
       className="px-8 md:px-24 py-32 bg-surface-container-low rounded-t-xl"
       ref={sectionRef}
     >
@@ -133,12 +134,12 @@ export function About() {
               as="h3"
               className="uppercase"
             >
-              <div className="overflow-hidden">
+              <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
                 <span className="about-heading-line inline-block">
                   BUILDING THE
                 </span>
               </div>
-              <div className="overflow-hidden">
+              <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
                 <span className="about-heading-line inline-block">
                   FUTURE.
                 </span>
@@ -158,10 +159,16 @@ export function About() {
             </p>
           </div>
           <div className="about-cta-wrapper pt-8 flex gap-4">
-            <Button className="about-cta bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-transform duration-300">
+            <Button 
+              data-cursor="shrink"
+              className="about-cta bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-transform duration-300"
+            >
               My Process
             </Button>
-            <Button className="about-cta bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-on-surface-variant/20 hover:bg-surface-container transition-colors duration-300">
+            <Button 
+              data-cursor="shrink"
+              className="about-cta bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-on-surface-variant/20 hover:bg-surface-container transition-colors duration-300"
+            >
               Download CV
             </Button>
           </div>
@@ -205,7 +212,7 @@ export function About() {
               className="about-stats-card text-white"
             >
               <span className="about-stat-number text-4xl font-headline font-extrabold block mb-4">
-                2
+                +2
               </span>
               <p className="font-label text-xs uppercase tracking-widest text-white/60">
                 Years Building &amp; Shipping
