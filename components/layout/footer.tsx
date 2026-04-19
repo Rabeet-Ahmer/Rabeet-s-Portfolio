@@ -2,8 +2,7 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { Button } from "@/components/ui/button";
-import { Magnetic } from "@/components/animations/magnetic";
+import { InfiniteMarquee } from "@/components/animations/infinite-marquee";
 
 const footerLinks = [
   { label: "LinkedIn", href: "#" },
@@ -68,25 +67,6 @@ export function Footer() {
           start: "top 95%",
         },
       });
-
-      // Infinite marquee
-      const marquee = footerRef.current.querySelector(".footer-marquee");
-      if (marquee) {
-        const items = marquee.querySelectorAll(".footer-marquee-item");
-        if (items.length > 0) {
-          const itemWidth = (items[0] as HTMLElement).offsetWidth;
-          gsap.set(marquee, { x: 0 });
-          gsap.to(marquee, {
-            x: -itemWidth * 2,
-            duration: 20,
-            ease: "none",
-            repeat: -1,
-            modifiers: {
-              x: gsap.utils.unitize((x: number) => x % (itemWidth * 2)),
-            },
-          });
-        }
-      }
     },
     { scope: footerRef }
   );
@@ -98,17 +78,11 @@ export function Footer() {
     >
       {/* Infinite marquee */}
       <div className="footer-marquee-wrapper py-12 border-b border-on-surface/5 overflow-hidden">
-        <div className="footer-marquee flex whitespace-nowrap">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <span
-              key={i}
-              className="footer-marquee-item font-headline font-extrabold text-[8vw] md:text-[6vw] tracking-tighter uppercase text-on-surface/5 px-8 shrink-0 select-none"
-              aria-hidden={i > 0}
-            >
-              RABEET AHMER — DESIGN, DEVELOP & DELIVER •
-            </span>
-          ))}
-        </div>
+        <InfiniteMarquee speed={25} gap={64}>
+          <span className="footer-marquee-item font-headline font-extrabold text-[8vw] md:text-[6vw] tracking-tighter uppercase text-on-surface/5 px-8 shrink-0 select-none">
+            RABEET AHMER — DESIGN, DEVELOP & DELIVER •
+          </span>
+        </InfiniteMarquee>
       </div>
 
       <div className="max-w-7xl mx-auto px-12 py-24 flex flex-col items-center text-center">
