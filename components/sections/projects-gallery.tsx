@@ -1,59 +1,167 @@
 "use client";
 
 import { useRef } from "react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const projects = [
   {
     title: "Rhetorich",
     category: "SaaS Platform — AI Coaching",
+    description:
+      "An AI-powered coaching platform helping lawyers become more impactful communicators.",
+    image: "/prism.jpeg",
   },
   {
     title: "Portfolio V2",
     category: "Personal Branding — Web Design",
+    description:
+      "A curated digital portfolio balancing industrial strength with academic grace.",
+    image: "/desk.jpg",
   },
   {
     title: "Project Three",
     category: "Coming Soon",
+    description:
+      "An upcoming project pushing the boundaries of intelligent automation.",
+    image: "/cube.jpg",
   },
 ];
 
 export function ProjectsGallery() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      const track = trackRef.current;
+      if (!section || !track) return;
+
+      const panels = gsap.utils.toArray<HTMLElement>(".gallery-panel");
+      if (panels.length === 0) return;
+
+      const totalWidth = track.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      const distance = totalWidth - viewportWidth;
+
+      // Horizontal scroll with pin
+      const scrollTween = gsap.to(track, {
+        x: -distance,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          scrub: 1,
+          end: () => `+=${distance}`,
+          snap: {
+            snapTo: 1 / (panels.length - 1),
+            duration: 0.3,
+            ease: "power1.inOut",
+          },
+        },
+      });
+
+      // Glass card entrance per panel
+      panels.forEach((panel) => {
+        const glass = panel.querySelector(".gallery-glass");
+        const counter = panel.querySelector(".gallery-counter");
+
+        if (glass) {
+          gsap.from(glass, {
+            y: 60,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: panel,
+              start: "left 60%",
+              containerAnimation: scrollTween,
+            },
+          });
+        }
+
+        if (counter) {
+          gsap.from(counter, {
+            opacity: 0,
+            y: 20,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: panel,
+              start: "left 60%",
+              containerAnimation: scrollTween,
+            },
+          });
+        }
+      });
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section className="mt-12 overflow-x-auto hide-scrollbar snap-x snap-mandatory flex gap-12 px-8 md:px-24 pb-24" ref={scrollRef}>
-      {projects.map((project) => (
-        <div
-          key={project.title}
-          className="snap-center shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]"
-        >
-          {/* Image area */}
-          <div className="group relative aspect-16/10 overflow-hidden rounded-lg bg-surface-container transition-all duration-700 hover:shadow-2xl hover:shadow-primary/5">
-            {/* Placeholder — swap for next/image later */}
-            <div className="w-full h-full bg-surface-container-highest transition-transform duration-2000 ease-out group-hover:scale-110" />
-            <div className="absolute inset-0 bg-linear-to-t from-primary-container/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </div>
+    <section ref={sectionRef} className="overflow-hidden">
+      <div ref={trackRef} className="flex" style={{ width: `${projects.length * 100}vw` }}>
+        {projects.map((project, index) => (
+          <div
+            key={project.title}
+            className="gallery-panel relative w-screen h-screen shrink-0 overflow-hidden group"
+          >
+            {/* Full-screen background image */}
+            <div className="absolute inset-0">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="gallery-img object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="100vw"
+              />
+              {/* Dark overlay for text readability */}
+              <div className="absolute inset-0 bg-linear-to-t from-primary/80 via-primary/30 to-transparent" />
+              <div className="absolute inset-0 bg-primary/20" />
+            </div>
 
-          {/* Info */}
-          <div className="mt-8 flex flex-col md:flex-row justify-between gap-6">
-            <div>
-              <SectionHeading as="h3" size="card" color="primary" className="text-3xl md:text-4xl">
+            {/* Card counter — top right */}
+            <div className="gallery-counter absolute top-8 right-8 md:top-12 md:right-12 z-10">
+              <span className="font-headline text-6xl md:text-8xl font-extrabold text-white/20">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
+
+            {/* Glassmorphic overlay card — bottom left */}
+            <Card
+              variant="glass"
+              padding="default"
+              rounding="default"
+              className="gallery-glass absolute bottom-8 left-8 md:bottom-16 md:left-16 md:p-10 max-w-lg z-10"
+            >
+              <Badge
+                variant="light"
+                className="text-[10px] text-white tracking-widest mb-3"
+              >
+                {project.category}
+              </Badge>
+              <SectionHeading
+                as="h3"
+                size="card"
+                color="inherit"
+                className="text-white tracking-tighter mb-3 uppercase text-3xl md:text-5xl"
+              >
                 {project.title}
               </SectionHeading>
-              <p className="font-body italic text-lg text-on-surface-variant mt-2">
-                {project.category}
+              <p className="text-white/80 font-body text-sm md:text-base leading-relaxed mb-6">
+                {project.description}
               </p>
-            </div>
-            <Button variant="primary" size="sm" className="self-start px-8 py-4">
-              View Study
-            </Button>
+              <span className="inline-block font-label text-xs uppercase tracking-widest text-white/60 border-b border-white/20 pb-1 group-hover:text-white group-hover:border-white/60 transition-all duration-300">
+                View Case Study
+              </span>
+            </Card>
           </div>
-        </div>
-      ))}
-      {/* Spacer for scroll ending */}
-      <div className="shrink-0 w-8 md:w-24" />
+        ))}
+      </div>
     </section>
   );
 }
