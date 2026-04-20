@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Badge } from "@/components/ui/badge";
 
 export function Hero() {
@@ -188,7 +188,7 @@ export function Hero() {
 
           {/* Person image */}
           <Image
-            src="/portriat.png"
+            src="/portrait.png"
             alt="Rabeet Ahmer — Full-Stack & AI Developer"
             width={440}
             height={440}

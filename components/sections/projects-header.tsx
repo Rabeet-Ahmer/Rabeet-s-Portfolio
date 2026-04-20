@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ProjectsHeader() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {

@@ -44,21 +44,18 @@ export function ProjectsGallery() {
       const panels = gsap.utils.toArray<HTMLElement>(".gallery-panel");
       if (panels.length === 0) return;
 
-      const totalWidth = track.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      const distance = totalWidth - viewportWidth;
-
       // Horizontal scroll with pin
       const scrollTween = gsap.to(track, {
-        x: -distance,
+        x: () => -(track.scrollWidth - window.innerWidth),
         ease: "none",
+        invalidateOnRefresh: true,
         scrollTrigger: {
           trigger: section,
           pin: true,
           scrub: 1,
-          end: () => `+=${distance}`,
+          end: () => `+=${Math.max(0, track.scrollWidth - window.innerWidth)}`,
           snap: {
-            snapTo: 1 / (panels.length - 1),
+            snapTo: panels.length > 1 ? 1 / (panels.length - 1) : 0,
             duration: 0.3,
             ease: "power1.inOut",
           },

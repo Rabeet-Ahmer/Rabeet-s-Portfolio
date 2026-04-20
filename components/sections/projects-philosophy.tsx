@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ProjectsPhilosophy() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
@@ -106,7 +106,7 @@ export function ProjectsPhilosophy() {
               alt="Silhouette of a person at a window"
               width={500}
               height={500}
-              className="phil-image w-full h-full object-cover transition-all duration-500"
+              className="phil-image w-full h-full object-cover"
             />
           </div>
 
@@ -117,7 +117,7 @@ export function ProjectsPhilosophy() {
               alt="Light refracting through glass prism"
               width={500}
               height={500}
-              className="phil-image w-full h-full object-cover transition-all duration-500"
+              className="phil-image w-full h-full object-cover"
             />
           </div>
 

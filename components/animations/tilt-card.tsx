@@ -28,6 +28,13 @@ export function TiltCard({
   const handleMouseMove = (e: React.MouseEvent) => {
     const card = cardRef.current;
     if (!card) return;
+    if (
+      typeof window !== "undefined" &&
+     (window.matchMedia("(pointer: coarse)").matches ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    ) {
+      return;
+    }
 
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -43,15 +50,14 @@ export function TiltCard({
       rotateY,
       duration: 0.4,
       ease: "power2.out",
+      overwrite: "auto",
       transformPerspective: 800,
     });
 
     if (spotlight && spotlightRef.current) {
-      gsap.to(spotlightRef.current, {
-        opacity: 1,
-        background: `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.08) 0%, transparent 60%)`,
-        duration: 0.3,
-      });
+      // background snaps — only opacity tweens
+      spotlightRef.current.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.08) 0%, transparent 60%)`;
+      gsap.to(spotlightRef.current, { opacity: 1, duration: 0.3, overwrite: "auto" });
     }
   };
 

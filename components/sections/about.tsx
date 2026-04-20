@@ -89,13 +89,16 @@ export function About() {
       });
 
       // Stats counter
-      const statsEl = sectionRef.current.querySelector(".about-stat-number");
+            const statsEl = sectionRef.current.querySelector(".about-stat-number");
       if (statsEl) {
-        gsap.from(statsEl, {
-          textContent: 0,
+        gsap.to({ value: 0 }, {
+          value: 2,
           duration: 2,
           ease: "power1.out",
-          snap: { textContent: 1 },
+          snap: { value: 1 },
+          onUpdate: function () {
+            statsEl.textContent = `+${Math.round(this.targets()[0].value)}`;
+          },
           scrollTrigger: {
             trigger: statsEl,
             start: "top 90%",
@@ -212,10 +215,10 @@ export function About() {
               className="about-stats-card text-white"
             >
               <span className="about-stat-number text-4xl font-headline font-extrabold block mb-4">
-                +2
+                2
               </span>
               <p className="font-label text-xs uppercase tracking-widest text-white/60">
-                Years Building &amp; Shipping
+                Years Building AI &amp; Web Apps
               </p>
             </Card>
             {/* Cube image */}

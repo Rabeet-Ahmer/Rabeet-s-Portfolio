@@ -15,10 +15,10 @@ export function QuoteSection() {
       if (!sectionRef.current) return;
 
       // Quote icon entrance
-      gsap.from(".quote-icon", {
-        scale: 0,
-        opacity: 0,
-        rotate: -20,
+      gsap.to(".quote-icon", {
+        scale: 1,
+        opacity: 0.4,
+        rotate: 0,
         duration: 0.8,
         ease: "back.out(2)",
         scrollTrigger: {
@@ -29,7 +29,6 @@ export function QuoteSection() {
 
       // Word-by-word reveal — scrubbed to scroll
       const words = gsap.utils.toArray<HTMLElement>(".quote-word");
-      gsap.set(words, { opacity: 0.15 });
 
       gsap.to(words, {
         opacity: 1,
@@ -44,9 +43,9 @@ export function QuoteSection() {
       });
 
       // Cite fade-in
-      gsap.from(".quote-cite", {
-        y: 20,
-        opacity: 0,
+      gsap.to(".quote-cite", {
+        y: 0,
+        opacity: 1,
         duration: 0.6,
         ease: "power3.out",
         scrollTrigger: {
@@ -70,20 +69,20 @@ export function QuoteSection() {
 
       <div className="max-w-5xl mx-auto px-8 text-center relative z-10">
         <Quote
-          className="quote-icon size-16 mb-12 opacity-40 mx-auto"
+          className="quote-icon size-16 mb-12 opacity-0 mx-auto scale-0 -rotate-12"
           fill="currentColor"
           strokeWidth={0}
         />
         <blockquote className="quote-text font-body text-3xl md:text-5xl lg:text-6xl italic leading-tight mb-12">
           &ldquo;
           {quoteText.split(" ").map((word, i) => (
-            <span key={i} className="quote-word inline-block mr-[0.3em]">
+            <span key={`${word}-${i}`} className="quote-word inline-block mr-[0.3em] opacity-[0.15]">
               {word}
             </span>
           ))}
           &rdquo;
         </blockquote>
-        <cite className="quote-cite font-label text-sm uppercase tracking-[0.4em] text-white/50 not-italic">
+        <cite className="quote-cite font-label text-sm uppercase tracking-[0.4em] text-white/50 not-italic opacity-0 translate-y-4 inline-block">
           — Rabeet Ahmer
         </cite>
       </div>

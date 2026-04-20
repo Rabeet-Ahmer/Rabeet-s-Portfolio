@@ -139,11 +139,20 @@ export function CustomCursor() {
     document.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseout", handleMouseOut);
 
+    // Only hide native cursor if we have a fine pointer (mouse)
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (isFinePointer) {
+      document.documentElement.classList.add("cursor-hidden");
+    }
+
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       gsap.ticker.remove(tickerFn);
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
+      if (isFinePointer) {
+        document.documentElement.classList.remove("cursor-hidden");
+      }
     };
   }, [onMouseMove]);
 

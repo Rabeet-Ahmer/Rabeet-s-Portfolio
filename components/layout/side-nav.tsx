@@ -13,7 +13,7 @@ const navItems = [
 ];
 
 export function SideNav() {
-  const [activeSection, setActiveSection] = useState("curated");
+  const [activeSection, setActiveSection] = useState("about");
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function SideNav() {
       // Container entrance
       gsap.fromTo(navRef.current,
         { x: 60, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8, delay: 1, ease: "power3.out" }
+        { x: 0, opacity: 1, duration: 0.8, delay: 3, ease: "power3.out" }
       );
 
       // Stagger nav items
@@ -56,7 +56,7 @@ export function SideNav() {
             opacity: 1,
             stagger: 0.08,
             duration: 0.4,
-            delay: 1.3,
+            delay: 3,
             ease: "back.out(2)"
           }
         );

@@ -208,13 +208,8 @@ export function TechMarquee() {
 
         <InfiniteMarquee speed={40} gap={80} className="py-8">
           {technologies.map((tech) => (
-            <div
-              key={tech.name}
-              className="flex items-center gap-4 px-8 py-4"
-            >
-              <div className="size-10 text-on-surface/40">
-                {tech.logo}
-              </div>
+            <div key={tech.name} className="flex items-center gap-4 px-8 py-4">
+              <div className="size-10 text-on-surface/40">{tech.logo}</div>
               <span className="font-headline font-extrabold text-2xl uppercase tracking-tighter text-on-surface/30">
                 {tech.name}
               </span>

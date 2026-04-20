@@ -106,7 +106,7 @@ export function Footer() {
         </nav>
         <div className="footer-divider h-px w-24 bg-on-surface/10 mb-8" />
         <p className="footer-copyright font-label text-xs uppercase tracking-widest opacity-50">
-          &copy; 2026 Rabeet Ahmer. Crafted with Intent.
+          &copy; {new Date().getFullYear()} Rabeet Ahmer. Crafted with Intent.
         </p>
       </div>
     </footer>

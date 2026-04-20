@@ -166,7 +166,8 @@ html.lenis body {
 }
 
 @media (pointer: fine) {
-  html, html *, html body, html body * {
+  .cursor-hidden,
+  .cursor-hidden * {
     cursor: none !important;
   }
 }

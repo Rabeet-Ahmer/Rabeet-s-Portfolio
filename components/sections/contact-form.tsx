@@ -17,7 +17,9 @@ export function ContactForm() {
       if (!sectionRef.current) return;
 
       // FOUC Prevention
-      gsap.set(sectionRef.current, { clipPath: "inset(10% 10% 10% 10% round 3rem)" });
+      gsap.set(sectionRef.current, {
+        clipPath: "inset(10% 10% 10% 10% round 3rem)",
+      });
       gsap.set(".contact-form-title", { y: 40, opacity: 0 });
       gsap.set(".contact-form-desc", { y: 20, opacity: 0 });
       gsap.set(".contact-input", { y: 30, opacity: 0 });
@@ -61,7 +63,7 @@ export function ContactForm() {
             duration: 0.5,
             ease: "power3.out",
           },
-          "-=0.3"
+          "-=0.3",
         );
 
       // Input fields stagger
@@ -122,7 +124,7 @@ export function ContactForm() {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
