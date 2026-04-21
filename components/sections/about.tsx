@@ -3,13 +3,18 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { buttonVariants } from "@/components/ui/button";
+import { Download, ArrowDownRight } from "lucide-react";
+import { SOCIAL_LINKS } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { useLenis } from "lenis/react";
 
 export function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
 
   useGSAP(
     () => {
@@ -89,21 +94,24 @@ export function About() {
       });
 
       // Stats counter
-            const statsEl = sectionRef.current.querySelector(".about-stat-number");
+      const statsEl = sectionRef.current.querySelector(".about-stat-number");
       if (statsEl) {
-        gsap.to({ value: 0 }, {
-          value: 2,
-          duration: 2,
-          ease: "power1.out",
-          snap: { value: 1 },
-          onUpdate: function () {
-            statsEl.textContent = `+${Math.round(this.targets()[0].value)}`;
+        gsap.to(
+          { value: 0 },
+          {
+            value: 2,
+            duration: 2,
+            ease: "power1.out",
+            snap: { value: 1 },
+            onUpdate: function () {
+              statsEl.textContent = `+${Math.round(this.targets()[0].value)}`;
+            },
+            scrollTrigger: {
+              trigger: statsEl,
+              start: "top 90%",
+            },
           },
-          scrollTrigger: {
-            trigger: statsEl,
-            start: "top 90%",
-          },
-        });
+        );
       }
 
       // Stats card entrance
@@ -118,7 +126,7 @@ export function About() {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
@@ -143,9 +151,7 @@ export function About() {
                 </span>
               </div>
               <div className="overflow-hidden p-[0.2em] -m-[0.2em]">
-                <span className="about-heading-line inline-block">
-                  FUTURE.
-                </span>
+                <span className="about-heading-line inline-block">FUTURE.</span>
               </div>
             </SectionHeading>
           </div>
@@ -162,18 +168,45 @@ export function About() {
             </p>
           </div>
           <div className="about-cta-wrapper pt-8 flex gap-4">
-            <Button 
+            <a
+              href="#process"
+              onClick={(e) => {
+                e.preventDefault();
+                lenis?.scrollTo("#process");
+              }}
               data-cursor="shrink"
-              className="about-cta bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-transform duration-300"
+              className={cn(
+                buttonVariants({ variant: "default" }),
+                "about-cta group/process relative overflow-hidden bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-all duration-500 h-auto border-none"
+              )}
             >
-              My Process
-            </Button>
-            <Button 
+              <div className="relative flex items-center justify-center gap-2">
+                <span className="inline-block transition-transform duration-500 group-hover/process:-translate-y-full group-hover/process:opacity-0">
+                  My Process
+                </span>
+                <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-500 group-hover/process:translate-y-0 group-hover/process:opacity-100">
+                  <ArrowDownRight className="size-4" />
+                </span>
+              </div>
+            </a>
+            <a
+              href={SOCIAL_LINKS.cv}
+              download="Rabeet_Ahmer_CV.pdf"
               data-cursor="shrink"
-              className="about-cta bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-on-surface-variant/20 hover:bg-surface-container transition-colors duration-300"
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "about-cta group/cv relative overflow-hidden bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-on-surface-variant/20 hover:bg-surface-container transition-all duration-500 h-auto"
+              )}
             >
-              Download CV
-            </Button>
+              <div className="relative flex items-center justify-center gap-2">
+                <span className="inline-block transition-transform duration-500 group-hover/cv:-translate-y-full group-hover/cv:opacity-0">
+                  Download CV
+                </span>
+                <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-500 group-hover/cv:translate-y-0 group-hover/cv:opacity-100">
+                  <Download className="size-4" />
+                </span>
+              </div>
+            </a>
           </div>
         </div>
 

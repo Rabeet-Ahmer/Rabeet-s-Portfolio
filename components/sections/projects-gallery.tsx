@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { GitBranchIcon, Globe, ExternalLink } from "lucide-react";
+import { Globe } from "lucide-react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

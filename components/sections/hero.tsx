@@ -144,7 +144,7 @@ export function Hero() {
           variant="light"
           className="hero-eyebrow tracking-[0.3em] md:text-sm text-on-primary-container/70 mb-6"
         >
-          Rabeet Ahmer — Portfolio 2026
+          Rabeet Ahmer — Portfolio {new Date().getFullYear()}
         </Badge>
 
         {/* Main heading */}
