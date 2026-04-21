@@ -12,7 +12,8 @@ export const PROJECTS_DATA = [
     description:
       "An AI-powered coaching platform helping lawyers become more impactful communicators.",
     image: "/project1.jpeg",
-    link: "https://www.github.com/Rabeet-Ahmer/Converso",
+    githubLink: "https://www.github.com/Rabeet-Ahmer/Converso",
+    liveLink: "https://mentora.live", // Replace with actual live link if available
   },
   {
     title: "AI Todo App",
@@ -20,7 +21,8 @@ export const PROJECTS_DATA = [
     description:
       "An AI-powered todo app that helps you stay organized and focused.",
     image: "/project2.jpeg",
-    link: "https://www.github.com/Rabeet-Ahmer/AI-Todo-App",
+    githubLink: "https://www.github.com/Rabeet-Ahmer/AI-Todo-App",
+    liveLink: "https://ai-todo.live", // Replace with actual live link if available
   },
   {
     title: "Deep Research Agent",
@@ -28,7 +30,8 @@ export const PROJECTS_DATA = [
     description:
       "An AI-powered research agent for students and professionals deep research work.",
     image: "/project3.jpeg",
-    link: "https://www.github.com/Rabeet-Ahmer/Deep-Research-Agent",
+    githubLink: "https://www.github.com/Rabeet-Ahmer/Deep-Research-Agent",
+    liveLink: "https://research-agent.live", // Replace with actual live link if available
   },
 ];
 
