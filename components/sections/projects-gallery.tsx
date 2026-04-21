@@ -7,29 +7,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const projects = [
-  {
-    title: "Mentora",
-    category: "SaaS Platform — AI Coaching",
-    description:
-      "An AI-powered coaching platform helping lawyers become more impactful communicators.",
-    image: "/project1.jpeg",
-  },
-  {
-    title: "AI Todo App",
-    category: "Web App — AI Assistant",
-    description:
-      "An AI-powered todo app that helps you stay organized and focused.",
-    image: "/project2.jpeg",
-  },
-  {
-    title: "Deep Research Agent",
-    category: "Web App — AI Assistant",
-    description:
-      "An AI-powered research agent for students and professionals deep research work.",
-    image: "/project3.jpeg",
-  },
-];
+import { PROJECTS_DATA } from "@/lib/constants";
+
 
 export function ProjectsGallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -126,8 +105,8 @@ export function ProjectsGallery() {
 
   return (
     <section ref={sectionRef} className="overflow-hidden">
-      <div ref={trackRef} className="flex" style={{ width: `${projects.length * 100}vw` }}>
-        {projects.map((project, index) => (
+      <div ref={trackRef} className="flex" style={{ width: `${PROJECTS_DATA.length * 100}vw` }}>
+        {PROJECTS_DATA.map((project, index) => (
           <div
             key={project.title}
             data-cursor="view"
@@ -178,9 +157,14 @@ export function ProjectsGallery() {
               <p className="text-white/80 font-body text-sm md:text-base leading-relaxed mb-6">
                 {project.description}
               </p>
-              <span className="inline-block font-label text-xs uppercase tracking-widest text-white/60 border-b border-white/20 pb-1 group-hover:text-white group-hover:border-white/60 transition-all duration-300">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block font-label text-xs uppercase tracking-widest text-white/60 border-b border-white/20 pb-1 group-hover:text-white group-hover:border-white/60 transition-all duration-300"
+              >
                 View Case Study
-              </span>
+              </a>
             </Card>
           </div>
         ))}
