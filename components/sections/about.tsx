@@ -168,47 +168,51 @@ export function About() {
             </p>
           </div>
           <div className="about-cta-wrapper pt-8 flex gap-4">
-            <a
-              href="#process"
-              onClick={(e) => {
-                if (lenis) {
-                  e.preventDefault();
-                  lenis.scrollTo("#process");
-                }
-              }}
-              data-cursor="shrink"
-              className={cn(
-                buttonVariants({ variant: "default" }),
-                "about-cta group/process relative overflow-hidden bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-all duration-500 h-auto border-none"
-              )}
-            >
-              <div className="relative flex items-center justify-center gap-2">
-                <span className="inline-block transition-transform duration-500 group-hover/process:-translate-y-full group-hover/process:opacity-0">
-                  My Process
-                </span>
-                <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-500 group-hover/process:translate-y-0 group-hover/process:opacity-100">
-                  <ArrowDownRight className="size-4" />
-                </span>
-              </div>
-            </a>
-            <a
-              href={SOCIAL_LINKS.cv}
-              download="Rabeet_Ahmer_CV.pdf"
-              data-cursor="shrink"
-              className={cn(
-                buttonVariants({ variant: "outline" }),
-                "about-cta group/cv relative overflow-hidden bg-surface-container-high text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border-none hover:bg-surface-container transition-all duration-500 h-auto"
-              )}
-            >
-              <div className="relative flex items-center justify-center gap-2">
-                <span className="inline-block transition-transform duration-500 group-hover/cv:-translate-y-full group-hover/cv:opacity-0">
-                  Download CV
-                </span>
-                <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-500 group-hover/cv:translate-y-0 group-hover/cv:opacity-100">
-                  <Download className="size-4" />
-                </span>
-              </div>
-            </a>
+            <div className="about-cta">
+              <a
+                href="#process"
+                onClick={(e) => {
+                  if (lenis) {
+                    e.preventDefault();
+                    lenis.scrollTo("#process");
+                  }
+                }}
+                data-cursor="shrink"
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "group/process relative overflow-hidden bg-primary-container text-on-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full hover:scale-105 transition-all duration-500 h-auto border-none"
+                )}
+              >
+                <div className="relative flex items-center justify-center gap-2">
+                  <span className="inline-block transition-transform duration-500 group-hover/process:-translate-y-full group-hover/process:opacity-0">
+                    My Process
+                  </span>
+                  <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-500 group-hover/process:translate-y-0 group-hover/process:opacity-100">
+                    <ArrowDownRight className="size-4" />
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div className="about-cta">
+              <a
+                href={SOCIAL_LINKS.cv}
+                download="Rabeet_Ahmer_CV.pdf"
+                data-cursor="shrink"
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "group/cv relative overflow-hidden bg-surface-container-high text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border-none hover:bg-surface-container transition-all duration-500 h-auto"
+                )}
+              >
+                <div className="relative flex items-center justify-center gap-2">
+                  <span className="inline-block transition-transform duration-500 group-hover/cv:-translate-y-full group-hover/cv:opacity-0">
+                    Download CV
+                  </span>
+                  <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-500 group-hover/cv:translate-y-0 group-hover/cv:opacity-100">
+                    <Download className="size-4" />
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 
