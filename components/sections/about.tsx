@@ -171,8 +171,10 @@ export function About() {
             <a
               href="#process"
               onClick={(e) => {
-                e.preventDefault();
-                lenis?.scrollTo("#process");
+                if (lenis) {
+                  e.preventDefault();
+                  lenis.scrollTo("#process");
+                }
               }}
               data-cursor="shrink"
               className={cn(
@@ -195,7 +197,7 @@ export function About() {
               data-cursor="shrink"
               className={cn(
                 buttonVariants({ variant: "outline" }),
-                "about-cta group/cv relative overflow-hidden bg-transparent text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border border-on-surface-variant/20 hover:bg-surface-container transition-all duration-500 h-auto"
+                "about-cta group/cv relative overflow-hidden bg-surface-container-high text-primary font-label text-sm uppercase tracking-widest px-10 py-5 rounded-full border-none hover:bg-surface-container transition-all duration-500 h-auto"
               )}
             >
               <div className="relative flex items-center justify-center gap-2">

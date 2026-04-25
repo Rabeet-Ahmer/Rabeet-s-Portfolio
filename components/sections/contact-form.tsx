@@ -23,9 +23,10 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus("submitting");
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
@@ -43,6 +44,8 @@ export function ContactForm() {
 
       if (response.ok) {
         setStatus("success");
+        form.reset();
+        setTimeout(() => setStatus("idle"), 6000);
       } else {
         setStatus("error");
       }
@@ -195,7 +198,14 @@ export function ContactForm() {
               {/* Form Config for FormSubmit */}
               <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
               <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_honey" className="hidden" />
+              <input
+                type="text"
+                name="_honey"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="contact-input space-y-2">
