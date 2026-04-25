@@ -29,32 +29,30 @@ export function InfiniteMarquee({
       const marquee = marqueeRef.current;
       
       const updateAnimation = () => {
-        const itemSets = Array.from(marquee.children) as HTMLElement[];
-        if (itemSets.length < 2) return;
+        const items = Array.from(marquee.children) as HTMLElement[];
+        if (items.length === 0) return;
 
-        const firstSet = itemSets[0];
-        const moveAmount = firstSet.offsetWidth + gap;
+        // Force a recalculation of layout
+        const totalWidth = marquee.scrollWidth / 2;
         const dirOffset = direction === "left" ? -1 : 1;
 
         gsap.killTweensOf(marquee);
-        
-        if (direction === "left") {
-          gsap.set(marquee, { x: 0 });
-          gsap.to(marquee, {
-            x: -moveAmount,
-            duration: speed,
-            ease: "none",
-            repeat: -1,
-          });
-        } else {
-          gsap.set(marquee, { x: -moveAmount });
-          gsap.to(marquee, {
-            x: 0,
-            duration: speed,
-            ease: "none",
-            repeat: -1,
-          });
-        }
+        gsap.set(marquee, { x: 0 });
+
+        gsap.to(marquee, {
+          x: dirOffset * totalWidth,
+          duration: speed,
+          ease: "none",
+          repeat: -1,
+          modifiers: {
+            x: gsap.utils.unitize((x: number) => {
+              const val = parseFloat(x.toString());
+              return direction === "left" 
+                ? (val % totalWidth) 
+                : ((val % totalWidth) - totalWidth) % totalWidth;
+            }),
+          },
+        });
       };
 
       updateAnimation();

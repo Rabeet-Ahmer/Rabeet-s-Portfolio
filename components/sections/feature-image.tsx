@@ -62,7 +62,7 @@ export function FeatureImage() {
       <div className="max-w-7xl mx-auto">
         <div
           data-cursor="view"
-          onClick={() => window.open("https://read-buddy-nine.vercel.app/", "_blank")}
+          onClick={() => window.open("https://read-buddy-nine.vercel.app/", "_blank", "noopener,noreferrer")}
           className="feature-container relative h-[500px] md:h-[716px] w-full overflow-hidden rounded-xl bg-surface-container group cursor-pointer"
         >
           {/* Zooming background image */}

@@ -4,7 +4,7 @@ export const SOCIAL_LINKS = {
   x: "https://x.com/RabeetAhmer25",
   email: "rabeetahmer9749@gmail.com",
   cv: "/resume.pdf",
-};
+} as const;
 
 export const PROJECTS_DATA = [
   {
@@ -34,11 +34,11 @@ export const PROJECTS_DATA = [
     githubLink: "https://www.github.com/Rabeet-Ahmer/Deep-Research-Agent",
     liveLink: "https://research-agent.live", // Replace with actual live link if available
   },
-];
+] as const;
 
 export const FOOTER_LINKS = [
   { label: "LinkedIn", href: SOCIAL_LINKS.linkedIn },
   { label: "GitHub", href: SOCIAL_LINKS.github },
   { label: "X (Twitter)", href: SOCIAL_LINKS.x },
   { label: "Email", href: `mailto:${SOCIAL_LINKS.email}` },
-];
+] as const;

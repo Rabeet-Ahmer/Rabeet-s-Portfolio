@@ -114,7 +114,7 @@ export function ProjectsGallery() {
           <div
             key={project.title}
             data-cursor="view"
-            onClick={() => window.open(project.liveLink, "_blank")}
+            onClick={() => window.open(project.liveLink, "_blank", "noopener,noreferrer")}
             className="gallery-panel relative w-screen h-screen shrink-0 overflow-hidden group cursor-pointer"
           >
             {/* Full-screen background image */}
