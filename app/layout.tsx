@@ -49,10 +49,12 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col font-body">
-        <Preloader />
-        <CustomCursor />
-        <ScrollProgress />
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <Preloader />
+          <CustomCursor />
+          <ScrollProgress />
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );

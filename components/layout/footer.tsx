@@ -4,12 +4,8 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { InfiniteMarquee } from "@/components/animations/infinite-marquee";
 
-const footerLinks = [
-  { label: "LinkedIn", href: "#" },
-  { label: "GitHub", href: "#" },
-  { label: "Dribbble", href: "#" },
-  { label: "Email", href: "#" },
-];
+import { FOOTER_LINKS } from "@/lib/constants";
+
 
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -94,10 +90,12 @@ export function Footer() {
           ))}
         </div>
         <nav className="footer-nav flex flex-wrap justify-center gap-12 mb-16">
-          {footerLinks.map((link) => (
+          {FOOTER_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
+              target={link.href.startsWith("mailto") ? undefined : "_blank"}
+              rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               className="footer-link inline-flex items-center font-body italic text-lg text-on-surface/60 hover:underline underline-offset-8 transition-all px-4 py-2"
             >
               {link.label}

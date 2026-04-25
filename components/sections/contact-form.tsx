@@ -1,16 +1,56 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const socials = ["LinkedIn", "GitHub", "Instagram"];
+import { SOCIAL_LINKS } from "@/lib/constants";
+
+const contactSocials = [
+  { label: "LinkedIn", href: SOCIAL_LINKS.linkedIn },
+  { label: "GitHub", href: SOCIAL_LINKS.github },
+  { label: "X (Twitter)", href: SOCIAL_LINKS.x },
+];
 
 export function ContactForm() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
+    "idle",
+  );
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${SOCIAL_LINKS.email}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(data),
+        },
+      );
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus("error");
+    }
+  };
 
   useGSAP(
     () => {
@@ -151,7 +191,12 @@ export function ContactForm() {
               </p>
             </div>
 
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-8" onSubmit={handleSubmit}>
+              {/* Form Config for FormSubmit */}
+              <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_honey" className="hidden" />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="contact-input space-y-2">
                   <label className="font-label text-xs uppercase tracking-widest text-surface/50 font-bold ml-4">
@@ -159,6 +204,8 @@ export function ContactForm() {
                   </label>
                   <input
                     type="text"
+                    name="full_name"
+                    required
                     placeholder="Julianne Smith"
                     className="w-full bg-white/5 border-none rounded-lg p-6 text-surface placeholder:text-surface/20 focus:ring-1 focus:ring-surface/30 transition-all outline-none"
                   />
@@ -169,6 +216,8 @@ export function ContactForm() {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    required
                     placeholder="julianne@studio.com"
                     className="w-full bg-white/5 border-none rounded-lg p-6 text-surface placeholder:text-surface/20 focus:ring-1 focus:ring-surface/30 transition-all outline-none"
                   />
@@ -180,18 +229,41 @@ export function ContactForm() {
                   Tell me about your project
                 </label>
                 <textarea
+                  name="message"
+                  required
                   placeholder="Share your story..."
                   rows={4}
                   className="w-full bg-white/5 border-none rounded-lg p-6 text-surface placeholder:text-surface/20 focus:ring-1 focus:ring-surface/30 transition-all outline-none resize-none"
                 />
               </div>
 
-              <Button
-                type="submit"
-                className="contact-submit w-full md:w-auto px-12 py-6 bg-surface text-primary-container font-headline font-extrabold uppercase tracking-widest rounded-lg hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-black/20"
-              >
-                Send Message
-              </Button>
+              <div className="space-y-4">
+                <Button
+                  type="submit"
+                  variant={"secondary"}
+                  disabled={status === "submitting" || status === "success"}
+                  className="contact-submit w-full md:w-auto px-12 py-6 bg-surface text-primary-container font-headline font-extrabold uppercase tracking-widest rounded-lg"
+                >
+                  {status === "submitting"
+                    ? "Sending..."
+                    : status === "success"
+                      ? "Message Sent!"
+                      : "Send Message"}
+                </Button>
+
+                {status === "success" && (
+                  <p className="text-sm text-inverse-primary font-body italic">
+                    Thank you! Your message has been sent successfully. I&apos;ll
+                    get back to you soon.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="text-sm text-shadow-destructive font-body italic">
+                    Something went wrong. Please try again or reach out directly via
+                    email.
+                  </p>
+                )}
+              </div>
             </form>
           </div>
 
@@ -214,7 +286,9 @@ export function ContactForm() {
                   Direct Email
                 </Badge>
                 <h4 className="font-body text-3xl italic text-surface group-hover:translate-x-2 transition-transform duration-500 border-b border-surface/10 pb-4">
-                  rabeetahmer9749@gmail.com
+                  <a href={`mailto:${SOCIAL_LINKS.email}`}>
+                    {SOCIAL_LINKS.email}
+                  </a>
                 </h4>
               </div>
             </div>
@@ -225,14 +299,16 @@ export function ContactForm() {
                 Social Connection
               </Badge>
               <div className="grid grid-cols-1 gap-4">
-                {socials.map((name) => (
+                {contactSocials.map((social) => (
                   <a
-                    key={name}
-                    href="#"
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="contact-social flex items-center justify-between group py-4 px-6 rounded-full border border-white/5 text-on-primary hover:bg-white hover:text-primary-container transition-all duration-500"
                   >
                     <span className="font-headline text-lg font-bold uppercase tracking-tighter">
-                      {name}
+                      {social.label}
                     </span>
                     <ArrowUpRight className="size-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
                   </a>

@@ -8,8 +8,8 @@ import { gsap } from "@/lib/gsap";
  *
  * Add data attributes to elements for different cursor states:
  * - data-cursor="view"  → Shows "View" text (for images, projects)
- * - data-cursor="drag"  → Shows "Drag" text (for sliders, galleries)
  * - data-cursor="link"  → Scales up ring (for links, buttons — auto-detected)
+ * - data-cursor="block" → Reverts to default state (hides text)
  */
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -109,7 +109,7 @@ export function CustomCursor() {
         currentContextEl = contextEl;
         const state = contextEl.getAttribute("data-cursor");
         if (state === "view") showLabel("View");
-        else if (state === "drag") showLabel("Drag");
+        else if (state === "block") hideLabel();
         return;
       }
 

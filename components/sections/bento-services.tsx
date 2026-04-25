@@ -31,7 +31,7 @@ const services = [
   {
     title: "API & Backend",
     description:
-      "Architecting robust REST and GraphQL APIs, databases, and server infrastructure that scales.",
+      "Architecting robust REST APIs, databases, and server infrastructure that scales.",
     icon: Server,
     span: "",
     textSize: "sm",
