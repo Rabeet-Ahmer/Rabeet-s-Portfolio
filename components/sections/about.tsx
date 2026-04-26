@@ -12,6 +12,7 @@ import { SOCIAL_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useLenis } from "lenis/react";
 
+
 export function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();

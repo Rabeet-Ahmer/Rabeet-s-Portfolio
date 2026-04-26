@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 
+
 type MagneticProps = {
   children: React.ReactElement;
   strength?: number;

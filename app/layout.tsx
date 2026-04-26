@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Epilogue, Noto_Serif, Manrope } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
-import { CustomCursor } from "@/components/animations/custom-cursor";
-import { Preloader } from "@/components/animations/preloader";
-import { ScrollProgress } from "@/components/animations/scroll-progress";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScroll";
+import { CustomCursor } from "@/components/animations/CustomCursor";
+import { Preloader } from "@/components/animations/Preloader";
+import { ScrollProgress } from "@/components/animations/ScrollProgress";
 
 
 const epilogue = Epilogue({

@@ -2,10 +2,9 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { InfiniteMarquee } from "@/components/animations/infinite-marquee";
+import { InfiniteMarquee } from "@/components/animations/InfiniteMarquee";
 
 import { FOOTER_LINKS } from "@/lib/constants";
-
 
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -64,7 +63,7 @@ export function Footer() {
         },
       });
     },
-    { scope: footerRef }
+    { scope: footerRef },
   );
 
   return (
@@ -95,7 +94,11 @@ export function Footer() {
               key={link.label}
               href={link.href}
               target={link.href.startsWith("mailto") ? undefined : "_blank"}
-              rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+              rel={
+                link.href.startsWith("mailto")
+                  ? undefined
+                  : "noopener noreferrer"
+              }
               className="footer-link inline-flex items-center font-body italic text-lg text-on-surface/60 hover:underline underline-offset-8 transition-all px-4 py-2"
             >
               {link.label}

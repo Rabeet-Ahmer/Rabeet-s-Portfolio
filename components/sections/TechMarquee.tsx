@@ -1,6 +1,6 @@
 "use client";
 
-import { InfiniteMarquee } from "@/components/animations/infinite-marquee";
+import { InfiniteMarquee } from "@/components/animations/InfiniteMarquee";
 
 const technologies = [
   {

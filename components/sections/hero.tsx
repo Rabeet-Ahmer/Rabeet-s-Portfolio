@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Badge } from "@/components/ui/badge";
 
+
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const entranceTl = useRef<gsap.core.Timeline | null>(null);

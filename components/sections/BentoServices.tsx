@@ -5,7 +5,7 @@ import { Code, Bot, Server, Workflow } from "lucide-react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { TiltCard } from "@/components/animations/tilt-card";
+import { TiltCard } from "@/components/animations/TiltCard";
 
 const services = [
   {

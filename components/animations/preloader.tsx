@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 
+
 export function Preloader() {
   const preloaderRef = useRef<HTMLDivElement>(null);
   const [done, setDone] = useState(false);

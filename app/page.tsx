@@ -1,16 +1,16 @@
-import { SideNav } from "@/components/layout/side-nav";
-import { Footer } from "@/components/layout/footer";
-import { Hero } from "@/components/sections/hero";
-import { FeatureImage } from "@/components/sections/feature-image";
-import { About } from "@/components/sections/about";
-import { TechMarquee } from "@/components/sections/tech-marquee";
-import { BentoServices } from "@/components/sections/bento-services";
-import { QuoteSection } from "@/components/sections/quote-section";
-import { ProjectsHeader } from "@/components/sections/projects-header";
-import { ProjectsGallery } from "@/components/sections/projects-gallery";
-import { ProjectsPhilosophy } from "@/components/sections/projects-philosophy";
-import { ContactHeader } from "@/components/sections/contact-header";
-import { ContactForm } from "@/components/sections/contact-form";
+import { SideNav } from "@/components/layout/SideNav";
+import { Footer } from "@/components/layout/Footer";
+import { Hero } from "@/components/sections/Hero";
+import { FeatureImage } from "@/components/sections/FeatureImage";
+import { About } from "@/components/sections/About";
+import { TechMarquee } from "@/components/sections/TechMarquee";
+import { BentoServices } from "@/components/sections/BentoServices";
+import { QuoteSection } from "@/components/sections/QuoteSection";
+import { ProjectsHeader } from "@/components/sections/ProjectsHeader";
+import { ProjectsGallery } from "@/components/sections/ProjectsGallery";
+import { ProjectsPhilosophy } from "@/components/sections/ProjectsPhilosophy";
+import { ContactHeader } from "@/components/sections/ContactHeader";
+import { ContactForm } from "@/components/sections/ContactForm";
 
 export default function Home() {
   return (
