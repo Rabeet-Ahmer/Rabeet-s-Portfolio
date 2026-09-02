@@ -114,7 +114,12 @@ export function ProjectsGallery() {
           <div
             key={project.title}
             data-cursor="view"
-            onClick={() => window.open(project.liveLink, "_blank", "noopener,noreferrer")}
+            onClick={() => {
+              const projectUrl = project.liveLink || project.githubLink;
+              if (!projectUrl) return;
+
+              window.open(projectUrl, "_blank", "noopener,noreferrer");
+            }}
             className="gallery-panel relative w-screen h-screen shrink-0 overflow-hidden group cursor-pointer"
           >
             {/* Full-screen background image */}
@@ -187,17 +192,19 @@ export function ProjectsGallery() {
                   
                   <span>Source</span>
                 </a>
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor="block"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-2 font-label text-xs uppercase tracking-widest text-white/60 hover:text-white transition-all duration-300 group/icon"
-                >
-                  <Globe className="size-5 group-hover/icon:scale-110 transition-transform" />
-                  <span>Live Site</span>
-                </a>
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cursor="block"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-2 font-label text-xs uppercase tracking-widest text-white/60 hover:text-white transition-all duration-300 group/icon"
+                  >
+                    <Globe className="size-5 group-hover/icon:scale-110 transition-transform" />
+                    <span>Live Site</span>
+                  </a>
+                )}
               </div>
             </Card>
           </div>

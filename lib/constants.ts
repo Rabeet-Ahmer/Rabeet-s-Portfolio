@@ -1,9 +1,9 @@
 export const SOCIAL_LINKS = {
   linkedIn: "https://www.linkedin.com/in/rabeet-ahmer-b4204a332/",
   github: "https://www.github.com/Rabeet-Ahmer/",
-  x: "https://x.com/RabeetAhmer25",
+  x: "https://x.com/RabeetAhmerX0",
   email: "rabeetahmer9749@gmail.com",
-  cv: "/resume.pdf",
+  cv: "/Rabeet-Ahmer-resume.pdf",
 } as const;
 
 export const PROJECTS_DATA = [
@@ -32,7 +32,7 @@ export const PROJECTS_DATA = [
       "An AI-powered research agent for student's and professional's deep research work.",
     image: "/project3.jpeg",
     githubLink: "https://www.github.com/Rabeet-Ahmer/Deep-Research-Agent",
-    liveLink: "https://research-agent.live", // Replace with actual live link if available
+    liveLink: "",
   },
 ] as const;
 
