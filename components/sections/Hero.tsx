@@ -177,9 +177,8 @@ export function Hero() {
 
         {/* Subtitle */}
         <p className="hero-subtitle font-body text-base md:text-lg text-on-primary-container/80 max-w-xl mt-6 leading-relaxed">
-          Full-Stack Developer &amp; Agentic AI Developer &mdash; building
-          scalable web solutions with Next.js &amp; pioneering intelligent AI
-          systems.
+          Full-Stack &amp; Agentic AI Developer &mdash; building scalable
+          systems, shipped fast with an AI-native workflow.
         </p>
 
         {/* Person image area with floating badges */}
@@ -211,10 +210,10 @@ export function Hero() {
           <div className="hero-badge absolute top-[55%] right-[3%] md:right-[8%] flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface/90 backdrop-blur-sm shadow-lg shadow-primary/10">
             <span className="size-2.5 rounded-full bg-surface-tint" />
             <span className="font-label text-xs text-on-surface tracking-wide">
-              Full-Stack Dev
+              AI-Native
             </span>
             <span className="font-headline text-sm font-extrabold text-primary-container">
-              2+ Years
+              Agentic Workflow
             </span>
           </div>
         </div>

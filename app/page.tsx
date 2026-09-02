@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { FeatureImage } from "@/components/sections/FeatureImage";
 import { About } from "@/components/sections/About";
 import { TechMarquee } from "@/components/sections/TechMarquee";
+import { AIStackMarquee } from "@/components/sections/AIStackMarquee";
 import { BentoServices } from "@/components/sections/BentoServices";
 import { QuoteSection } from "@/components/sections/QuoteSection";
 import { ProjectsHeader } from "@/components/sections/ProjectsHeader";
@@ -21,6 +22,7 @@ export default function Home() {
         <FeatureImage />
         <About />
         <TechMarquee />
+        <AIStackMarquee />
         <BentoServices />
         <QuoteSection />
         <ProjectsHeader />

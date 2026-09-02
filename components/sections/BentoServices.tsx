@@ -139,7 +139,7 @@ export function BentoServices() {
           </SectionHeading>
           <p className="bento-subtitle font-body text-xl max-w-sm italic text-on-surface-variant">
             Turning ideas into scalable, production-ready software and
-            intelligent AI systems.
+            intelligent AI systems &mdash; shipped fast with agentic AI tooling.
           </p>
         </div>
 

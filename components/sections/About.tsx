@@ -162,10 +162,9 @@ export function About() {
               who turns complex ideas into production-ready systems.
             </p>
             <p className="about-text font-body text-lg leading-relaxed text-on-surface-variant">
-              I specialize in building scalable web applications with Next.js,
-              React, and TypeScript, and architecting intelligent AI agent
-              systems that automate workflows and solve real-world problems.
-              Every project is an opportunity to push what&rsquo;s possible.
+              I build scalable apps with Next.js and architect intelligent AI
+              agents &mdash; working AI-native with tools like Claude Code and
+              Cursor to ship fast without cutting corners on quality.
             </p>
           </div>
           <div className="about-cta-wrapper pt-8 flex gap-4">

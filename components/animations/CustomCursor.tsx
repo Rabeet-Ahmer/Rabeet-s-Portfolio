@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 
 /**
@@ -18,15 +18,9 @@ export function CustomCursor() {
   const pos = useRef({ x: 0, y: 0 });
   const isVisible = useRef(false);
 
-  const onMouseMove = useCallback((e: MouseEvent) => {
-    pos.current.x = e.clientX;
-    pos.current.y = e.clientY;
-
-    if (!isVisible.current && cursorRef.current) {
-      gsap.to(cursorRef.current, { opacity: 1, duration: 0.3 });
-      isVisible.current = true;
-    }
-  }, []);
+  const lastX = useRef(-1);
+  const lastY = useRef(-1);
+  const lastTarget = useRef<Element | null>(null);
 
   useEffect(() => {
     // Only on desktop
@@ -36,8 +30,6 @@ export function CustomCursor() {
     const dot = dotRef.current;
     const label = labelRef.current;
     if (!cursor || !dot || !label) return;
-
-    window.addEventListener("mousemove", onMouseMove);
 
     // Smooth follow loop
     const tickerFn = () => {
@@ -100,44 +92,144 @@ export function CustomCursor() {
     let currentContextEl: Element | null = null;
     let currentHoverEl: Element | null = null;
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      
-      // Check context labels
-      const contextEl = target.closest("[data-cursor]");
-      if (contextEl && contextEl !== currentContextEl) {
-        currentContextEl = contextEl;
-        const state = contextEl.getAttribute("data-cursor");
-        if (state === "view") showLabel("View");
-        else if (state === "block") hideLabel();
-        return;
+    const syncState = (target: Element | null) => {
+      const contextEl = target ? target.closest("[data-cursor]") : null;
+      const hoverEl = target ? target.closest("a, button, [role='button'], [data-cursor-hover]") : null;
+
+      // Handle contextEl changes
+      if (contextEl) {
+        if (contextEl !== currentContextEl) {
+          currentContextEl = contextEl;
+          const state = contextEl.getAttribute("data-cursor");
+          if (state === "view") showLabel("View");
+          else if (state === "block") hideLabel();
+        }
+      } else {
+        if (currentContextEl) {
+          currentContextEl = null;
+          hideLabel();
+        }
       }
 
-      // Check generic interactive scale
-      const hoverEl = target.closest("a, button, [role='button'], [data-cursor-hover]");
-      if (hoverEl && hoverEl !== currentHoverEl && !contextEl) {
-        currentHoverEl = hoverEl;
-        handleLinkEnter();
-      }
-    };
-
-    const handleMouseOut = (e: MouseEvent) => {
-      const related = e.relatedTarget as HTMLElement | null;
-
-      // Only trigger leave if we actually exit the bounded element
-      if (currentContextEl && !currentContextEl.contains(related)) {
-        currentContextEl = null;
-        hideLabel();
-      }
-
-      if (currentHoverEl && !currentHoverEl.contains(related)) {
-        currentHoverEl = null;
-        handleLinkLeave();
+      // Handle hoverEl changes
+      if (hoverEl && !contextEl) {
+        if (hoverEl !== currentHoverEl) {
+          currentHoverEl = hoverEl;
+          handleLinkEnter();
+        }
+      } else {
+        if (currentHoverEl) {
+          currentHoverEl = null;
+          handleLinkLeave();
+        }
       }
     };
 
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseout", handleMouseOut);
+    const onMouseMove = (e: MouseEvent) => {
+      if (!e.isTrusted) return;
+
+      pos.current.x = e.clientX;
+      pos.current.y = e.clientY;
+      lastX.current = e.clientX;
+      lastY.current = e.clientY;
+      lastTarget.current = e.target as Element;
+
+      if (!isVisible.current && cursor) {
+        gsap.to(cursor, { opacity: 1, duration: 0.3 });
+        isVisible.current = true;
+      }
+
+      syncState(e.target as Element);
+    };
+
+    let scrollTimeout: ReturnType<typeof window.setTimeout> | undefined;
+
+    const onScroll = () => {
+      // Temporarily restore pointer-events to perform accurate hit-testing for custom cursor
+      document.body.style.pointerEvents = "";
+
+      if (isVisible.current && lastX.current >= 0) {
+        const el = document.elementFromPoint(lastX.current, lastY.current);
+        syncState(el);
+
+        if (el) {
+          const oldTarget = lastTarget.current;
+          
+          if (el !== oldTarget) {
+            if (oldTarget) {
+              oldTarget.dispatchEvent(new MouseEvent("mouseout", {
+                bubbles: true,
+                cancelable: true,
+                clientX: lastX.current,
+                clientY: lastY.current,
+              }));
+              oldTarget.dispatchEvent(new MouseEvent("mouseleave", {
+                bubbles: false,
+                cancelable: true,
+                clientX: lastX.current,
+                clientY: lastY.current,
+              }));
+            }
+
+            el.dispatchEvent(new MouseEvent("mouseover", {
+              bubbles: true,
+              cancelable: true,
+              clientX: lastX.current,
+              clientY: lastY.current,
+            }));
+            el.dispatchEvent(new MouseEvent("mouseenter", {
+              bubbles: false,
+              cancelable: true,
+              clientX: lastX.current,
+              clientY: lastY.current,
+            }));
+
+            lastTarget.current = el;
+          }
+
+          el.dispatchEvent(new MouseEvent("mousemove", {
+            bubbles: true,
+            cancelable: true,
+            clientX: lastX.current,
+            clientY: lastY.current,
+          }));
+        } else {
+          const oldTarget = lastTarget.current;
+          if (oldTarget) {
+            oldTarget.dispatchEvent(new MouseEvent("mouseout", {
+              bubbles: true,
+              cancelable: true,
+              clientX: lastX.current,
+              clientY: lastY.current,
+            }));
+            oldTarget.dispatchEvent(new MouseEvent("mouseleave", {
+              bubbles: false,
+              cancelable: true,
+              clientX: lastX.current,
+              clientY: lastY.current,
+            }));
+            lastTarget.current = null;
+          }
+        }
+      }
+
+      // Disable pointer-events during scroll to force browser CSS hover recalculation and optimize performance
+      document.body.style.pointerEvents = "none";
+
+      window.clearTimeout(scrollTimeout as unknown as number);
+      scrollTimeout = window.setTimeout(() => {
+        document.body.style.pointerEvents = "";
+        
+        // Perform a final sync once hover states are restored
+        if (isVisible.current && lastX.current >= 0) {
+          const el = document.elementFromPoint(lastX.current, lastY.current);
+          syncState(el);
+        }
+      }, 100) as unknown as ReturnType<typeof window.setTimeout>;
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     // Only hide native cursor if we have a fine pointer (mouse)
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
@@ -147,14 +239,15 @@ export function CustomCursor() {
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(scrollTimeout as unknown as number);
+      document.body.style.pointerEvents = "";
       gsap.ticker.remove(tickerFn);
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mouseout", handleMouseOut);
       if (isFinePointer) {
         document.documentElement.classList.remove("cursor-hidden");
       }
     };
-  }, [onMouseMove]);
+  }, []);
 
   return (
     <>
